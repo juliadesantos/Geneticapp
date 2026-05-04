@@ -1,0 +1,110 @@
+/* =================================================================
+   GENETICAPP - COLORES DE MARCA
+   Estilo: Ch'aska
+   ================================================================= */
+:root {
+    /* COLORES DE LA MARCA */
+    --geneticapp-negro: #1b1e31;
+    --geneticapp-blanco: #e7d8c1;
+    --geneticapp-principal: #121421;
+    --geneticapp-secundario: #74c1a7;
+    --geneticapp-acento: #f8794f;
+    --geneticapp-extra-1: #e5b02c;
+    --geneticapp-extra-2: #da4167;
+
+    /* GRISES (calculados dinámicamente) */
+    --geneticapp-gris-oscuro: color-mix(in srgb, var(--geneticapp-frente) 70%, var(--geneticapp-fondo) 30%);
+    --geneticapp-gris-medio: color-mix(in srgb, var(--geneticapp-frente) 50%, var(--geneticapp-fondo) 50%);
+    --geneticapp-gris-suave: color-mix(in srgb, var(--geneticapp-frente) 30%, var(--geneticapp-fondo) 70%);
+    --geneticapp-gris-claro: color-mix(in srgb, var(--geneticapp-frente) 10%, var(--geneticapp-fondo) 90%);
+
+    /* === COLORES DE ESTADO === */
+    --geneticapp-exito: #74c1a7;
+    --geneticapp-exito-fondo: #ecfdf5;
+    --geneticapp-exito-texto: #047857;
+
+    --geneticapp-error: #ef4444;
+    --geneticapp-error-fondo: #fef2f2;
+    --geneticapp-error-texto: #b91c1c;
+
+    --geneticapp-alerta: #eab308;
+    --geneticapp-alerta-fondo: #fefce8;
+    --geneticapp-alerta-texto: #a16207;
+
+    --geneticapp-info: #8b5cf6;
+    --geneticapp-info-fondo: #f5f3ff;
+    --geneticapp-info-texto: #6d28d9;
+
+    /* === ESPACIADO === */
+    --geneticapp-espacio-1: 0.25rem;
+    --geneticapp-espacio-2: 0.5rem;
+    --geneticapp-espacio-3: 0.75rem;
+    --geneticapp-espacio-4: 1rem;
+    --geneticapp-espacio-5: 1.25rem;
+    --geneticapp-espacio-6: 1.5rem;
+    --geneticapp-espacio-8: 2rem;
+
+    /* === TRANSICIONES === */
+    --geneticapp-transicion-rapida: 150ms ease-in-out;
+    --geneticapp-transicion-media: 300ms ease-in-out;
+    --geneticapp-transicion-lenta: 500ms ease-in-out;
+
+    /* === BORDES (configurable por estilo) === */
+    --geneticapp-radio-borde: 0;
+}
+
+/* =================================================================
+   TEMA CLARO (explícito)
+   ================================================================= */
+:root.tema-claro {
+    --geneticapp-frente: var(--geneticapp-negro);
+    --geneticapp-fondo: var(--geneticapp-blanco);
+}
+
+/* =================================================================
+   TEMA OSCURO (base)
+   ================================================================= */
+:root.tema-oscuro {
+    --geneticapp-frente: var(--geneticapp-blanco);
+    --geneticapp-fondo: var(--geneticapp-negro);
+
+    --geneticapp-gris-claro: color-mix(in srgb, var(--geneticapp-frente) 70%, var(--geneticapp-fondo) 30%);
+    --geneticapp-gris-suave: color-mix(in srgb, var(--geneticapp-frente) 50%, var(--geneticapp-fondo) 50%);
+    --geneticapp-gris-medio: color-mix(in srgb, var(--geneticapp-frente) 30%, var(--geneticapp-fondo) 70%);
+    --geneticapp-gris-oscuro: color-mix(in srgb, var(--geneticapp-frente) 10%, var(--geneticapp-fondo) 90%);
+
+    /* Estados invertidos para tema oscuro */
+    --geneticapp-exito-fondo: #052e16;
+    --geneticapp-exito-texto: #86efac;
+
+    --geneticapp-error-fondo: #450a0a;
+    --geneticapp-error-texto: #fca5a5;
+
+    --geneticapp-alerta-fondo: #422006;
+    --geneticapp-alerta-texto: #fde047;
+
+    --geneticapp-info-fondo: #2e1065;
+    --geneticapp-info-texto: #c4b5fd;
+}
+
+/* =================================================================
+   RESPETO A PREFERENCIAS DEL SISTEMA
+   ================================================================= */
+@media (prefers-color-scheme: dark) {
+    :root:not(.tema-claro):not(.tema-oscuro) {
+        --geneticapp-frente: var(--geneticapp-blanco);
+        --geneticapp-fondo: var(--geneticapp-negro);
+    }
+}
+
+
+/* =================================================================
+   GENETICAPP - COLORES CH'ASKA
+   Tema oscuro por defecto - Estética terminal CRT
+   ================================================================= */
+
+/* ===== VARIABLES SEMÁNTICAS ===== */
+:root {
+    --geneticapp-frente: var(--geneticapp-blanco);
+    --geneticapp-fondo: var(--geneticapp-negro);
+}

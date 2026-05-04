@@ -1,0 +1,145 @@
+/* =================================================================
+   CSS LOCAL DEL PLANO: ENFERMEDADES
+
+   Este archivo es EDITABLE y DESCARTABLE.
+   Contiene utilidades basicas para construir la interfaz del plano.
+   Puede eliminarlo completamente y usar solo el CSS global,
+   o agregar sus propios estilos especificos.
+   ================================================================= */
+
+/* =================================================================
+   UTILIDADES DE ESPACIADO
+   Clases genericas para margenes y padding
+   ================================================================= */
+.espacio-1 { padding: var(--geneticapp-espacio-1); }
+.espacio-2 { padding: var(--geneticapp-espacio-2); }
+.espacio-4 { padding: var(--geneticapp-espacio-4); }
+.espacio-6 { padding: var(--geneticapp-espacio-6); }
+.espacio-8 { padding: var(--geneticapp-espacio-8); }
+
+.margen-arriba-2 { margin-top: var(--geneticapp-espacio-2); }
+.margen-arriba-4 { margin-top: var(--geneticapp-espacio-4); }
+.margen-arriba-6 { margin-top: var(--geneticapp-espacio-6); }
+
+.margen-abajo-2 { margin-bottom: var(--geneticapp-espacio-2); }
+.margen-abajo-4 { margin-bottom: var(--geneticapp-espacio-4); }
+.margen-abajo-6 { margin-bottom: var(--geneticapp-espacio-6); }
+
+/* =================================================================
+   UTILIDADES DE LAYOUT
+   Flexbox y grid basicos
+   ================================================================= */
+.fila {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--geneticapp-espacio-4);
+}
+
+.fila--entre {
+    justify-content: space-between;
+}
+
+.fila--centro {
+    align-items: center;
+    justify-content: center;
+}
+
+.columna {
+    display: flex;
+    flex-direction: column;
+    gap: var(--geneticapp-espacio-4);
+}
+
+.grilla-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--geneticapp-espacio-4);
+}
+
+/* =================================================================
+   UTILIDADES DE TIPOGRAFIA
+   ================================================================= */
+.texto-chico { font-size: var(--geneticapp-texto-chico); }
+.texto-base { font-size: var(--geneticapp-texto-base); }
+.texto-grande { font-size: var(--geneticapp-texto-lg); }
+.texto-titulo { font-size: var(--geneticapp-texto-xl); }
+
+.texto-mono { font-family: var(--geneticapp-fuente-mono); }
+.texto-titulo-fuente { font-family: var(--geneticapp-fuente-titulos); }
+
+.texto-gris { color: var(--geneticapp-gris-medio); }
+.texto-suave { color: var(--geneticapp-gris-oscuro); }
+.texto-principal { color: var(--geneticapp-principal); }
+.texto-secundario { color: var(--geneticapp-secundario); }
+
+/* =================================================================
+   UTILIDADES DE BORDES Y FONDOS
+   ================================================================= */
+.borde {
+    border: 1px solid var(--geneticapp-gris-suave);
+}
+
+.borde-abajo {
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.fondo-suave {
+    background: var(--geneticapp-gris-claro);
+}
+
+.fondo-principal {
+    background: var(--geneticapp-principal);
+    color: var(--geneticapp-blanco);
+}
+
+/* =================================================================
+   COMPONENTES BASICOS
+   Bloques reutilizables minimos
+   ================================================================= */
+
+/* Caja: contenedor con borde y padding */
+.caja {
+    border: 1px solid var(--geneticapp-gris-suave);
+    padding: var(--geneticapp-espacio-4);
+    background: var(--geneticapp-fondo);
+}
+
+/* Codigo: bloque de codigo/terminal */
+.codigo {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    background: var(--geneticapp-negro);
+    color: var(--geneticapp-blanco);
+    padding: var(--geneticapp-espacio-4);
+    overflow-x: auto;
+    line-height: 1.6;
+}
+
+.codigo .carpeta { color: var(--geneticapp-secundario); }
+.codigo .archivo { opacity: 0.9; }
+.codigo .comentario { color: var(--geneticapp-gris-medio); }
+
+/* Etiqueta: para mostrar rutas, metodos, etc */
+.etiqueta {
+    display: inline-block;
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    padding: var(--geneticapp-espacio-1) var(--geneticapp-espacio-2);
+    background: var(--geneticapp-gris-claro);
+    border: 1px solid var(--geneticapp-gris-suave);
+}
+
+/* =================================================================
+   RESPONSIVE
+   ================================================================= */
+@media (max-width: 48em) {
+    .fila {
+        flex-direction: column;
+    }
+
+    .grilla-auto {
+        grid-template-columns: 1fr;
+    }
+}

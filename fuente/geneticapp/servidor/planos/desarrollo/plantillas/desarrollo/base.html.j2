@@ -1,0 +1,52 @@
+{% extends "base.html.j2" %}
+
+{% block css_secundario %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('.static', filename='{}/desarrollo.css'.format(CONFIG.get('CSS'))) }}">
+{% endblock %}
+
+{% block cabecera %}
+{{ super() }}
+<nav class="desarrollo__nav">
+    <ul class="desarrollo__nav-lista">
+        <li><span class="desarrollo__medalla">dev</span></li>
+        <li>
+            <a href="{{ url_for('desarrollo.inicio') }}"
+               class="desarrollo__nav-link {% if request.endpoint == 'desarrollo.inicio' %}activo{% endif %}"
+               hx-get="{{ url_for('desarrollo.inicio') }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true">
+                Inicio
+            </a>
+        </li>
+        <li>
+            <a href="{{ url_for('desarrollo.chastack') }}"
+               class="desarrollo__nav-link {% if request.endpoint == 'desarrollo.chastack' %}activo{% endif %}"
+               hx-get="{{ url_for('desarrollo.chastack') }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true">
+                Ch'astack
+            </a>
+        </li>
+        <li>
+            <a href="https://github.com/hernanatn/chastack"
+               target="_blank"
+               rel="noopener"
+               class="desarrollo__nav-link">
+                Repositorio
+            </a>
+        </li>
+    </ul>
+</nav>
+{% endblock %}
+
+{% block contenido_principal %}
+{% block contenido_desarrollo %}{% endblock %}
+{% endblock %}
+
+{% block js_secundario %}
+{% endblock %}

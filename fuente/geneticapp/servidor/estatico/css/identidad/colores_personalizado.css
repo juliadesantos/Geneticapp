@@ -1,0 +1,10 @@
+/* =================================================================
+   GENETICAPP - COLORES PERSONALIZADO
+   Tema claro por defecto - Estilo neutro
+   ================================================================= */
+
+/* ===== VARIABLES SEMÁNTICAS ===== */
+:root {
+    --geneticapp-frente: var(--geneticapp-negro);
+    --geneticapp-fondo: var(--geneticapp-blanco);
+}

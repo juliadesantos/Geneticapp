@@ -1,0 +1,13 @@
+/* =================================================================
+   GENETICAPP - PAGINAS PERSONALIZADO
+   Estilos neutros - funcionan con cualquier paleta
+   ================================================================= */
+
+/* Terminal con bordes redondeados */
+.terminal {
+    border-radius: var(--geneticapp-radio-borde);
+}
+
+.plano {
+    border-radius: var(--geneticapp-radio-borde);
+}

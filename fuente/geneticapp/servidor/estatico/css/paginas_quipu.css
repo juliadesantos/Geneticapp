@@ -1,0 +1,89 @@
+/* =================================================================
+   GENETICAPP - PAGINAS QUIPU
+   Tema claro, editorial, bordes conectados
+   ================================================================= */
+
+/* Terminal estilo maquina de escribir */
+.terminal {
+    background: var(--geneticapp-gris-claro);
+    color: var(--geneticapp-negro);
+    border: 1px solid var(--geneticapp-negro);
+}
+
+.terminal__cabecera {
+    background: var(--geneticapp-negro);
+    color: var(--geneticapp-blanco);
+    border-bottom: none;
+}
+
+.terminal__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+}
+
+.terminal__indicador {
+    background: var(--geneticapp-blanco);
+    border-color: var(--geneticapp-blanco);
+}
+
+.terminal__prompt {
+    color: var(--geneticapp-principal);
+}
+
+.terminal__carpeta {
+    color: var(--geneticapp-principal);
+    font-weight: 600;
+}
+
+.terminal__comentario {
+    color: var(--geneticapp-gris-medio);
+}
+
+/* Cards de planos estilo editorial */
+.planos__grilla {
+    gap: 0;
+}
+
+.plano {
+    border: 1px solid var(--geneticapp-negro);
+    background: var(--geneticapp-blanco);
+}
+
+.plano:hover {
+    background: var(--geneticapp-gris-claro);
+}
+
+.plano__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--geneticapp-negro);
+    border-bottom: 1px solid var(--geneticapp-negro);
+    padding-bottom: var(--geneticapp-espacio-2);
+    margin-bottom: var(--geneticapp-espacio-3);
+}
+
+.plano__descripcion {
+    color: var(--geneticapp-negro);
+    text-align: justify;
+}
+
+.plano__enlace {
+    color: var(--geneticapp-principal);
+}
+
+/* Enlaces estilo editorial */
+.enlaces__lista li {
+    border-bottom: 1px solid var(--geneticapp-negro);
+    padding: var(--geneticapp-espacio-4) 0;
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-negro);
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+}
+
+.enlaces__lista a:hover {
+    text-decoration: underline;
+}

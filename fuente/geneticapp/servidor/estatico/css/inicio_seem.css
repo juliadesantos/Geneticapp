@@ -1,0 +1,350 @@
+/* =================================================================
+   GENETICAPP - INICIO SEEM
+   Brutalismo Clínico: interfaz técnica, limpia, profesional
+
+   NOTA: El layout principal (sidebar + contenido) está definido en
+   diseño.css.tpl. Aquí solo estilos semánticos de la página de inicio.
+   ================================================================= */
+
+/* ===== HERO: Barra de contexto del proyecto ===== */
+.inicio__hero {
+    background: var(--geneticapp-fondo);
+    border-bottom: 1px solid var(--geneticapp-gris-200);
+    padding: var(--geneticapp-espacio-4) var(--geneticapp-espacio-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inicio__hero-titulo {
+    font-size: 1.125rem;
+    font-weight: var(--geneticapp-peso-negrita);
+    color: var(--geneticapp-frente);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-2);
+}
+
+/* Indicador de estado en el título */
+.inicio__hero-titulo::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--geneticapp-acento);
+    animation: seem-latido 2s ease-in-out infinite;
+}
+
+.inicio__hero-descripcion {
+    font-size: 0.8125rem;
+    color: var(--geneticapp-gris-600);
+    margin: 0;
+    font-family: var(--geneticapp-fuente-mono);
+}
+
+/* ===== CONTENEDOR PRINCIPAL: Área de trabajo ===== */
+.inicio__contenedor {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+        "proyecto info"
+        "chaskapp info"
+        "planos planos";
+    gap: var(--geneticapp-espacio-5);
+    padding: var(--geneticapp-espacio-6);
+    max-width: 1200px;
+}
+
+/* ===== SECCIONES: Tarjetas clínicas ===== */
+.inicio__seccion {
+    background: var(--geneticapp-fondo);
+    border: 1px solid var(--geneticapp-gris-200);
+    border-radius: var(--seem-radio-md, 0.5rem);
+    overflow: hidden;
+    box-shadow: var(--seem-sombra-sm, 0 1px 3px 0 rgb(0 0 0 / 0.1));
+}
+
+/* Asignación de áreas de grid */
+.inicio__seccion:first-child {
+    grid-area: proyecto;
+}
+
+.inicio__seccion:nth-child(2) {
+    grid-area: info;
+}
+
+.inicio__seccion:nth-child(3) {
+    grid-area: chaskapp;
+}
+
+.inicio__seccion:nth-child(4) {
+    grid-area: planos;
+}
+
+/* Cabecera de sección - estilo etiqueta clínica */
+.inicio__seccion-titulo {
+    font-size: 0.6875rem;
+    font-weight: var(--geneticapp-peso-negrita);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--geneticapp-gris-600);
+    margin: 0;
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-4);
+    background: var(--geneticapp-gris-100);
+    border-bottom: 1px solid var(--geneticapp-gris-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Indicador de estado en títulos de sección */
+.inicio__seccion-titulo::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--geneticapp-gris-300);
+}
+
+.inicio__seccion:hover .inicio__seccion-titulo::after {
+    background: var(--geneticapp-acento);
+}
+
+/* Contenido de sección */
+.inicio__seccion-contenido {
+    padding: var(--geneticapp-espacio-4);
+}
+
+/* ===== TERMINAL: Consola técnica ===== */
+.terminal {
+    background: var(--geneticapp-negro);
+    border: 1px solid var(--geneticapp-gris-200);
+    border-radius: var(--seem-radio-md, 0.5rem);
+    overflow: hidden;
+    margin: var(--geneticapp-espacio-4);
+}
+
+.terminal__cabecera {
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--geneticapp-espacio-2) var(--geneticapp-espacio-4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.terminal__titulo {
+    color: rgba(255, 255, 255, 0.6);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.terminal__indicador {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--geneticapp-acento);
+    animation: seem-latido 2s ease-in-out infinite;
+}
+
+.terminal__cuerpo {
+    padding: var(--geneticapp-espacio-4);
+    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: 0.8125rem;
+    line-height: 1.7;
+}
+
+.terminal__linea {
+    margin: var(--geneticapp-espacio-1) 0;
+}
+
+.terminal__prompt {
+    color: var(--geneticapp-acento);
+    font-weight: var(--geneticapp-peso-medio);
+}
+
+.terminal__carpeta {
+    color: #60a5fa;
+}
+
+.terminal__archivo {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.terminal__comentario {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: normal;
+}
+
+/* ===== GRILLA DE PLANOS ===== */
+.planos__grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--geneticapp-espacio-4);
+    padding: var(--geneticapp-espacio-4);
+}
+
+/* Tarjeta de plano - brutalismo clínico */
+.plano {
+    background: var(--geneticapp-fondo);
+    border: 1px solid var(--geneticapp-gris-200);
+    border-radius: var(--seem-radio-sm, 0.25rem);
+    padding: var(--geneticapp-espacio-4);
+    position: relative;
+    transition: all 0.15s ease;
+}
+
+/* Línea de acento izquierda */
+.plano::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--geneticapp-gris-200);
+    border-radius: var(--seem-radio-sm, 0.25rem) 0 0 var(--seem-radio-sm, 0.25rem);
+    transition: background 0.15s ease;
+}
+
+.plano:hover {
+    border-color: var(--geneticapp-negro);
+    box-shadow: var(--seem-sombra-md, 0 4px 6px -1px rgb(0 0 0 / 0.1));
+    transform: translateY(-2px);
+}
+
+.plano:hover::before {
+    background: var(--geneticapp-acento);
+}
+
+.plano__titulo {
+    font-size: 0.9375rem;
+    font-weight: var(--geneticapp-peso-negrita);
+    color: var(--geneticapp-frente);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.plano__descripcion {
+    font-size: 0.8125rem;
+    color: var(--geneticapp-gris-600);
+    margin-bottom: var(--geneticapp-espacio-3);
+    line-height: 1.5;
+}
+
+.plano__enlace {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-1);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: 0.6875rem;
+    color: var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-1) var(--geneticapp-espacio-2);
+    background: var(--geneticapp-gris-100);
+    border-radius: var(--seem-radio-sm, 0.25rem);
+    transition: all 0.15s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.plano__enlace:hover {
+    background: var(--geneticapp-negro);
+    color: var(--geneticapp-blanco);
+}
+
+/* Flecha en el enlace */
+.plano__enlace::after {
+    content: "→";
+    font-size: 0.75rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: all 0.15s ease;
+}
+
+.plano__enlace:hover::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ===== LISTA DE ENLACES ===== */
+.enlaces__lista {
+    list-style: none;
+    padding: var(--geneticapp-espacio-4);
+    margin: 0;
+}
+
+.enlaces__lista li {
+    padding: var(--geneticapp-espacio-3) 0;
+    border-bottom: 1px solid var(--geneticapp-gris-200);
+}
+
+.enlaces__lista li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.enlaces__lista li:first-child {
+    padding-top: 0;
+}
+
+.enlaces__lista a {
+    display: flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-3);
+    color: var(--geneticapp-frente);
+    font-size: 0.875rem;
+    transition: all 0.15s ease;
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-negro);
+    transform: translateX(4px);
+}
+
+/* Indicador de estado */
+.enlaces__lista a::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--geneticapp-gris-300);
+    flex-shrink: 0;
+    transition: all 0.15s ease;
+}
+
+.enlaces__lista a:hover::before {
+    background: var(--geneticapp-acento);
+    box-shadow: 0 0 8px var(--geneticapp-acento);
+}
+
+/* ===== RESPONSIVE SEEM ===== */
+@media (max-width: 768px) {
+    .inicio__hero {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--geneticapp-espacio-2);
+        padding: var(--geneticapp-espacio-4);
+    }
+
+    .inicio__contenedor {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "proyecto"
+            "chaskapp"
+            "info"
+            "planos";
+        padding: var(--geneticapp-espacio-4);
+        gap: var(--geneticapp-espacio-4);
+    }
+
+    .planos__grilla {
+        grid-template-columns: 1fr;
+    }
+}

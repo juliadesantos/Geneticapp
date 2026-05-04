@@ -1,0 +1,197 @@
+
+<div class="flash-contenedor">
+    {% with notificaciones = get_flashed_messages(with_categories=true) %}
+        {% if notificaciones %}
+            {% for tipo, notificacion in notificaciones %}
+                <div class="flash-notificacion flash-{{ tipo }} {{ 'permanente' if tipo in ('ERROR','ADVERTENCIA')}}" 
+                     data-index="{{ loop.index0 }}"
+                     style="--delay: {{ loop.index0 * 0.15 }}s">
+                    <div class="flash-content">
+                        <span class="flash-icon">
+                            {% if tipo == 'EXITO' %}
+                                <i class="fas fa-check-circle"></i>
+                            {% elif tipo == 'ERROR' or tipo == 'FATAL' %}
+                                <i class="fas fa-exclamation-circle"></i>
+                            {% elif tipo == 'ADVERTENCIA' %}
+                                <i class="fas fa-exclamation-triangle"></i>
+                            {% elif tipo == 'INFO' %}
+                                <i class="fas fa-info-circle"></i>
+                            {% else %}
+                                <i class="fas fa-bell"></i>
+                            {% endif %}
+                        </span>
+                        <span class="flash-text">{{ notificacion }}</span>
+                        <button class="flash-close" aria-label="Cerrar notificación">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            {% else %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+<style>
+    .flash-contenedor {
+        position: fixed;
+        bottom: 3rem;
+        left: 3rem;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: .5rem;
+        pointer-events: none;
+        transition: all 300ms ease-in-out!important;
+ 
+    }
+
+    .flash-notificacion {
+        min-width: 15vw;
+        max-width: 50vw;
+        width: min-content;
+        padding: 1rem;
+        border-radius: 5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        pointer-events: auto;
+        transform: translateX(-150%);
+        transition: all 300ms ease-in-out!important;
+        opacity: 0;
+        animation: slideIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation-delay: var(--delay);
+        transition: all 0.3s ease;
+    }
+
+    .flash-content {
+        display: flex;
+        align-items: center;
+        width: min-content;
+    }
+
+    .flash-icon {
+        margin-right: 1.5rem;
+        font-size: 18px;
+    }
+
+    .flash-text {
+        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .flash-close {
+        background: transparent;
+        border: none;
+        margin-left: 1.5rem;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+        padding: 0;
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .flash-close:hover {
+        opacity: 1;
+    }
+
+    /* Category colors */
+    .flash-EXITO {
+        background-color: var(--color-verde);
+        color: var(--marfil-neutro);
+    }
+
+    .flash-ERROR, .flash-FATAL {
+        background-color: var(--color-rosa);
+        color: var(--marfil-neutro);
+    }
+
+    .flash-ADVERTENCIA {
+        background-color: var(--color-amarillo);
+        color: var(--marfil-neutro);
+    }
+
+    .flash-INFO {
+        background-color: var(--color-gris-1);
+        color: var(--marfil-neutro);
+    }
+
+    /* Animations */
+    @keyframes slideIn {
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(-150%);
+            opacity: 0;
+        }
+    }
+
+    .flash-notificacion.hiding {
+        animation: slideOut 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashContainer = document.querySelector('.flash-contenedor');
+        
+        // Initialize all messages
+        const flashMessages = document.querySelectorAll('.flash-notificacion');
+        
+        flashMessages.forEach(msg => {
+            // Set up close button
+            const closeBtn = msg.querySelector('.flash-close');
+            closeBtn.addEventListener('click', () => {
+                dismissMessage(msg);
+            });
+            
+ 
+            if (!msg.classList.contains('permanente')){
+
+            const index = parseInt(msg.dataset.index);
+            const autoDismissDelay = 5000 + (index * 200);
+            
+            const dismissTimer = setTimeout(() => {
+                dismissMessage(msg);
+            }, autoDismissDelay);
+            
+            // Pause timer on hover
+            msg.addEventListener('mouseenter', () => {
+                clearTimeout(dismissTimer);
+            });
+            
+            // Resume timer when mouse leaves
+            msg.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    dismissMessage(msg);
+                }, 2000); // Shorter timeout after hover
+            });
+            }
+        });
+        
+        function dismissMessage(messageElement) {
+            if (messageElement.classList.contains('hiding')) return;
+            
+            messageElement.classList.add('hiding');
+            messageElement.addEventListener('animationend', () => {
+                messageElement.remove();
+                
+            }, { once: true });
+        }
+    });
+</script>

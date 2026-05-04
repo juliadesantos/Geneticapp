@@ -1,0 +1,239 @@
+
+/* =================================================================
+   GENETICAPP - SISTEMA TIPOGRÁFICO
+   Estilo: Ch'aska
+   ================================================================= */
+
+:root {
+
+    --geneticapp-fuente-titulos: 'roc-grotesk', sans-serif;
+    --geneticapp-fuente-texto: 'gopher', sans-serif;
+    --geneticapp-fuente-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+    --geneticapp-peso-fino: 300;
+    --geneticapp-peso-regular: 400;
+    --geneticapp-peso-medio: 500;
+    --geneticapp-peso-negrita: 600;
+
+    --geneticapp-alto-linea-apretado: 1;
+    --geneticapp-alto-linea-normal: 1.1;
+    --geneticapp-alto-linea-amplio: 1.25;
+
+    --geneticapp-ancho-regular: 100;
+    --geneticapp-ancho-medio: 125;
+    --geneticapp-ancho-negrita: 150;
+
+    --geneticapp-texto-chico: 0.75rem;
+    --geneticapp-texto-base: 1rem;
+    --geneticapp-texto-mediano: 1.15rem;
+    --geneticapp-texto-grande: 1.25rem;
+    --geneticapp-texto-lg: 1.5rem;
+    --geneticapp-texto-xl: 1.75rem;
+    --geneticapp-texto-2xl: 1.875rem;
+    --geneticapp-texto-3xl: 2rem;
+    --geneticapp-texto-4xl: 2.5rem;
+    --geneticapp-texto-hiper: 3rem;
+
+}
+
+* {
+    font-family: var(--geneticapp-fuente-texto);
+    font-size: var(--geneticapp-texto-base);
+    font-weight: var(--geneticapp-peso-regular);
+    font-style: normal;
+    font-variation-settings: "ital" 0, "wght" 400;
+    line-height: var(--geneticapp-alto-linea-normal);
+    text-align: left;
+}
+
+
+h1, h2, h3, h4, h5, h6,
+.titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    line-height: var(--geneticapp-alto-linea-apretado);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--geneticapp-texto-4xl);
+    font-weight: var(--geneticapp-peso-negrita);
+    font-variation-settings: "ital" 0, "wght" 700;
+}
+
+h2 {
+    font-size: var(--geneticapp-texto-3xl);
+    font-weight: var(--geneticapp-peso-regular);
+    font-variation-settings: "ital" 0, "wght" 400;
+}
+
+h3 {
+    font-size: var(--geneticapp-texto-2xl);
+    font-weight: var(--geneticapp-peso-fino);
+    font-style: italic;
+    font-variation-settings: "ital" 1, "wght" 200;
+}
+
+h4 {
+    font-size: var(--geneticapp-texto-xl);
+    font-weight: var(--geneticapp-peso-regular);
+}
+
+h5 {
+    font-size: var(--geneticapp-texto-lg);
+    font-weight: var(--geneticapp-peso-regular);
+}
+
+h6 {
+    font-size: var(--geneticapp-texto-base);
+    font-weight: var(--geneticapp-peso-negrita);
+    text-transform: uppercase;
+}
+
+p {
+    text-align: justify;
+    text-wrap: pretty;
+    hyphens: auto;
+}
+
+
+b, strong, .negrita {
+    font-weight: var(--geneticapp-peso-negrita);
+    font-variation-settings: "ital" 0, "wght" 700;
+}
+
+.fina {
+    font-weight: var(--geneticapp-peso-fino);
+    font-variation-settings: "ital" 0, "wght" 200;
+}
+
+em, i, .italica {
+    font-style: italic;
+    font-variation-settings: "ital" 1;
+}
+
+
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 200ms ease;
+}
+
+a:hover {
+    color: var(--geneticapp-secundario);
+}
+
+
+ul, ol {
+    padding-left: 1.5em;
+}
+
+li {
+    margin-bottom: 0.5em;
+}
+
+/* Citas */
+blockquote {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-lg);
+    padding-left: 1.5em;
+    border-left: 2px solid var(--geneticapp-gris-suave);
+}
+
+/* Código */
+code, pre {
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+}
+
+/* Selección de texto */
+::selection {
+    background-color: var(--geneticapp-secundario);
+    color: var(--geneticapp-fondo);
+}
+
+/* =================================================================
+   TIPOGRAFÍA RESPONSIVE - MÓVIL
+   Solo aplica en pantallas pequeñas (≤640px)
+   ================================================================= */
+@media (max-width: 40em) {
+    /* Escala tipográfica reducida con clamp */
+    h1 {
+        font-size: clamp(1.8rem, 8vw, 2.618rem);
+        line-height: var(--geneticapp-alto-linea-apretado);
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 6vw, 2rem);
+    }
+
+    h3 {
+        font-size: clamp(1.1rem, 4vw, 1.618rem);
+    }
+
+    h4 {
+        font-size: var(--geneticapp-texto-lg);
+    }
+
+    /* Párrafos: sin justify en móvil */
+    p {
+        text-align: left;
+        font-size: var(--geneticapp-texto-base);
+        hyphens: auto;
+        text-wrap: pretty;
+    }
+
+    /* Títulos especiales */
+    .titulo-hero {
+        font-size: clamp(1.5rem, 7vw, 2.5rem);
+    }
+
+    .titulo-seccion {
+        font-size: var(--geneticapp-texto-lg);
+    }
+
+    .subtitulo {
+        font-size: var(--geneticapp-texto-base);
+    }
+
+    /* Texto vertical pasa a horizontal */
+    .texto-vertical {
+        writing-mode: horizontal-tb;
+        transform: none;
+    }
+
+    /* Line height más compacto */
+    * {
+        line-height: 1.4;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        line-height: var(--geneticapp-alto-linea-apretado);
+    }
+}
+
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 400;
+  src: url(https://fonts.gstatic.com/s/materialsymbolsoutlined/v175/kJF4BvYX7BgnkSrUwT8OhrdQw4oELdPIeeII9v6oDMzBwG-RpA6RzaxHMPdY40KH8nGzv3fzfVJU22ZZLsYEpzC_1ver5Y0.woff2) format('woff2');
+}
+
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "aalt";
+}

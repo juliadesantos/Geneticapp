@@ -1,0 +1,247 @@
+/* =================================================================
+   GENETICAPP - INICIO QUIPU
+   Editorial, tipografía elegante, bordes conectados
+   ================================================================= */
+
+/* ===== HERO: Titular de portada ===== */
+.inicio__hero {
+    padding: var(--geneticapp-espacio-8) var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+    text-align: left;
+    background: transparent;
+    color: var(--geneticapp-frente);
+}
+
+.inicio__hero-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: var(--geneticapp-peso-negrita);
+    line-height: 0.9;
+    margin-bottom: var(--geneticapp-espacio-4);
+    letter-spacing: -0.02em;
+}
+
+.inicio__hero-subtitulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-xl);
+    opacity: 0.8;
+    max-width: 600px;
+}
+
+.inicio__hero-descripcion {
+    font-size: var(--geneticapp-texto-base);
+    color: var(--geneticapp-gris-oscuro);
+    margin: 0;
+}
+
+/* ===== CONTENEDOR PRINCIPAL: Grilla editorial ===== */
+.inicio__contenedor {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    max-width: none;
+    padding: 0;
+}
+
+/* ===== SECCIONES ===== */
+.inicio__seccion {
+    padding: var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+/* Columna izquierda tiene borde derecho */
+.inicio__seccion:nth-child(odd) {
+    border-right: 1px solid var(--geneticapp-frente);
+}
+
+.inicio__seccion-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--geneticapp-espacio-4);
+    padding-bottom: var(--geneticapp-espacio-2);
+    border-bottom: 1px solid var(--geneticapp-frente);
+    color: var(--geneticapp-frente);
+}
+
+.inicio__seccion-titulo::after {
+    display: none;
+}
+
+/* ===== GRILLA DE PLANOS ===== */
+.planos__grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    margin: calc(-1 * var(--geneticapp-espacio-6));
+    margin-top: var(--geneticapp-espacio-4);
+}
+
+.plano {
+    padding: var(--geneticapp-espacio-6);
+    border: none;
+    border-top: 1px solid var(--geneticapp-frente);
+    border-right: 1px solid var(--geneticapp-frente);
+    background: transparent;
+    box-shadow: none;
+    transition: background var(--geneticapp-transicion-rapida);
+}
+
+.plano:hover {
+    background: color-mix(in srgb, var(--geneticapp-frente) 5%, transparent);
+}
+
+.plano:last-child {
+    border-right: none;
+}
+
+.plano__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-2xl);
+    font-style: italic;
+    color: var(--geneticapp-frente);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.plano__descripcion {
+    font-size: var(--geneticapp-texto-base);
+    color: var(--geneticapp-gris-oscuro);
+    line-height: 1.6;
+    margin-bottom: var(--geneticapp-espacio-3);
+}
+
+.plano__enlace {
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+}
+
+/* ===== TERMINAL: Estilo maquina de escribir ===== */
+.terminal {
+    background: var(--geneticapp-fondo);
+    border: 1px solid var(--geneticapp-frente);
+    margin: 0;
+    position: relative;
+}
+
+/* Efecto de hoja de papel */
+.terminal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        var(--geneticapp-gris-suave) 10px,
+        var(--geneticapp-gris-suave) 12px
+    );
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.terminal__cabecera {
+    background: transparent;
+    border-bottom: 1px solid var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    margin-top: 20px;
+}
+
+.terminal__titulo {
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-mono);
+    text-transform: uppercase;
+    font-size: var(--geneticapp-texto-chico);
+    letter-spacing: 0.15em;
+}
+
+.terminal__indicador {
+    display: none;
+}
+
+.terminal__cuerpo {
+    padding: var(--geneticapp-espacio-6);
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+    line-height: 1.8;
+}
+
+.terminal__cuerpo * {
+    font-family: var(--geneticapp-fuente-mono);
+}
+
+.terminal__cuerpo::before {
+    display: none;
+}
+
+.terminal__prompt {
+    color: var(--geneticapp-frente);
+    font-weight: var(--geneticapp-peso-negrita);
+}
+
+.terminal__carpeta {
+    color: var(--geneticapp-principal);
+}
+
+.terminal__comentario {
+    color: var(--geneticapp-gris-medio);
+    font-style: italic;
+}
+
+/* ===== ENLACES: Lista elegante ===== */
+.enlaces__lista {
+    padding: 0;
+    list-style: none;
+}
+
+.enlaces__lista li {
+    padding: var(--geneticapp-espacio-3) 0;
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.enlaces__lista li:last-child {
+    border-bottom: none;
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-lg);
+    text-decoration: none;
+    transition: color var(--geneticapp-transicion-rapida);
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-principal);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 48em) {
+    .inicio__hero {
+        padding: var(--geneticapp-espacio-6);
+    }
+
+    .inicio__hero-titulo {
+        font-size: var(--geneticapp-texto-3xl);
+    }
+
+    .inicio__contenedor {
+        grid-template-columns: 1fr;
+    }
+
+    .inicio__seccion:nth-child(odd) {
+        border-right: none;
+    }
+
+    .planos__grilla {
+        grid-template-columns: 1fr;
+    }
+
+    .plano {
+        border-right: none;
+    }
+}

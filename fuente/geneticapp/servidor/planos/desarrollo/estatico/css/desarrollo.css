@@ -1,0 +1,600 @@
+/* =================================================================
+   GENETICAPP - ESTILOS DEL PANEL DE DESARROLLO
+   Estilo: Ch'aska
+
+   Panel de desarrollo para visualizar rutas, blueprints y comandos
+   ================================================================= */
+
+/* =================================================================
+   ESTILOS BASE - COMPARTIDOS POR TODOS LOS ESTILOS
+   ================================================================= */
+
+/* ===== NAVEGACION DE DESARROLLO ===== */
+.desarrollo__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-6);
+    padding: var(--geneticapp-espacio-4) var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+}
+
+.desarrollo__nav-lista {
+    list-style: none;
+    display: flex;
+    gap: var(--geneticapp-espacio-6);
+    padding: 0;
+    margin: 0;
+}
+
+.desarrollo__nav-link {
+    color: var(--geneticapp-frente);
+    opacity: 0.7;
+    transition: opacity var(--geneticapp-transicion-rapida);
+    text-decoration: none;
+}
+
+.desarrollo__nav-link:hover,
+.desarrollo__nav-link.activo {
+    opacity: 1;
+}
+
+.desarrollo__medalla {
+    background: var(--geneticapp-alerta);
+    color: var(--geneticapp-negro);
+    padding: 0.2rem 0.6rem;
+    font-size: var(--geneticapp-texto-chico);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ===== TERMINAL DEL PLANO DESARROLLO ===== */
+.desarrollo__terminal {
+    border: 1px solid var(--geneticapp-frente);
+    background: var(--geneticapp-fondo);
+}
+
+.desarrollo__terminal-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.desarrollo__terminal-titulo {
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.desarrollo__terminal-cuerpo {
+    padding: var(--geneticapp-espacio-6);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+    line-height: 1.8;
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+/* ===== CLASES DE COLOR PARA TERMINAL ===== */
+.prompt { color: var(--geneticapp-secundario); }
+.path { color: var(--geneticapp-principal); }
+.comment { opacity: 0.6; font-style: italic; }
+.highlight { color: var(--geneticapp-acento); }
+.success { color: var(--geneticapp-exito); }
+.warning { color: var(--geneticapp-alerta); }
+.error { color: var(--geneticapp-error); }
+
+/* ===== BOTONES DE TERMINAL ===== */
+.desarrollo__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-2);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    background: transparent;
+    border: 1px solid var(--geneticapp-frente);
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--geneticapp-transicion-rapida);
+}
+
+.desarrollo__btn:hover {
+    background: var(--geneticapp-frente);
+    color: var(--geneticapp-fondo);
+}
+
+/* ===== ACCIONES ===== */
+.desarrollo__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--geneticapp-espacio-3);
+    padding-top: var(--geneticapp-espacio-6);
+    border-top: 1px solid var(--geneticapp-gris-suave);
+    margin-top: var(--geneticapp-espacio-6);
+}
+
+/* ===== RUTAS ===== */
+.ruta-item {
+    display: flex;
+    align-items: center;
+    padding: var(--geneticapp-espacio-3) 0;
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.ruta-item:last-child {
+    border-bottom: none;
+}
+
+.ruta-metodo {
+    min-width: 60px;
+    padding: 0.2rem 0.5rem;
+    font-size: var(--geneticapp-texto-chico);
+    font-weight: 700;
+    text-align: center;
+    margin-right: var(--geneticapp-espacio-4);
+    border: 1px solid currentColor;
+}
+
+.ruta-metodo.GET { color: var(--geneticapp-exito); }
+.ruta-metodo.POST { color: var(--geneticapp-alerta); }
+.ruta-metodo.PUT { color: var(--geneticapp-info); }
+.ruta-metodo.DELETE { color: var(--geneticapp-error); }
+
+.ruta-path {
+    flex: 1;
+    font-size: var(--geneticapp-texto-base);
+}
+
+.ruta-path a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ruta-path a:hover {
+    color: var(--geneticapp-secundario);
+}
+
+.ruta-endpoint {
+    opacity: 0.5;
+    font-size: var(--geneticapp-texto-chico);
+}
+
+/* ===== STATS ===== */
+.desarrollo__stats {
+    display: flex;
+    gap: var(--geneticapp-espacio-8);
+    margin-bottom: var(--geneticapp-espacio-6);
+    padding-bottom: var(--geneticapp-espacio-4);
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.desarrollo__stat {
+    display: flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-2);
+    font-size: var(--geneticapp-texto-base);
+}
+
+.desarrollo__stat-num {
+    font-weight: 700;
+    font-size: var(--geneticapp-texto-xl);
+    color: var(--geneticapp-principal);
+}
+
+/* ===== PLANO CARD ===== */
+.plano-card {
+    padding: var(--geneticapp-espacio-4);
+    border: 1px solid var(--geneticapp-frente);
+    margin-bottom: var(--geneticapp-espacio-4);
+}
+
+.plano-card__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-lg);
+    color: var(--geneticapp-principal);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.plano-card__meta {
+    opacity: 0.7;
+    font-size: var(--geneticapp-texto-base);
+}
+
+/* ===== GRILLA DE DESARROLLO ===== */
+.desarrollo__grilla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.desarrollo__grilla > * {
+    border-right: 1px solid var(--geneticapp-frente);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.desarrollo__grilla > *:nth-child(2n) {
+    border-right: none;
+}
+
+/* ===== HERO DE DESARROLLO ===== */
+.desarrollo__hero {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--geneticapp-espacio-8) var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.desarrollo__hero-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-2xl);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.desarrollo__hero-subtitulo {
+    color: var(--geneticapp-gris-medio);
+    font-size: var(--geneticapp-texto-base);
+}
+
+/* ===== PANEL DE DESARROLLO ===== */
+.desarrollo__panel {
+    padding: var(--geneticapp-espacio-6);
+}
+
+.desarrollo__panel h3 {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-lg);
+    margin-bottom: var(--geneticapp-espacio-4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.desarrollo__panel-full {
+    grid-column: 1 / -1;
+}
+/* =================================================================
+   DESARROLLO - ESTILOS CH'ASKA
+   Diseno vertical fluido con terminales CRT y animaciones
+   ================================================================= */
+
+/* Nav de desarrollo en Ch'aska */
+.desarrollo__nav {
+    background: rgba(18, 20, 33, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom-color: var(--geneticapp-gris-suave);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.desarrollo__medalla {
+    background: var(--geneticapp-acento);
+    box-shadow: 0 0 10px var(--geneticapp-acento);
+}
+
+.desarrollo__nav-link {
+    color: var(--geneticapp-gris-medio);
+}
+
+.desarrollo__nav-link:hover,
+.desarrollo__nav-link.activo {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+}
+
+/* Terminal estilo CRT para desarrollo */
+.desarrollo__terminal {
+    background: var(--geneticapp-principal);
+    border-color: var(--geneticapp-secundario);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 0 30px rgba(116, 193, 167, 0.1),
+        inset 0 0 50px rgba(0, 0, 0, 0.4);
+    animation: flotarSuave 6s ease-in-out infinite;
+}
+
+/* Scanlines CRT */
+.desarrollo__terminal::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.06) 2px,
+        rgba(0, 0, 0, 0.06) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Efecto de brillo */
+.desarrollo__terminal::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(116, 193, 167, 0.02) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.desarrollo__terminal-cabecera {
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom-color: var(--geneticapp-secundario);
+    position: relative;
+    z-index: 2;
+}
+
+.desarrollo__terminal-titulo {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+}
+
+.desarrollo__terminal-cuerpo {
+    position: relative;
+    z-index: 2;
+    color: var(--geneticapp-blanco);
+}
+
+/* Clases de color para terminal Ch'aska */
+.prompt {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 6px var(--geneticapp-secundario);
+}
+
+.path {
+    color: var(--geneticapp-acento);
+    text-shadow: 0 0 4px var(--geneticapp-acento);
+}
+
+.highlight {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 6px var(--geneticapp-secundario);
+}
+
+/* Botones estilo Ch'aska */
+.desarrollo__btn {
+    border-color: var(--geneticapp-secundario);
+    color: var(--geneticapp-secundario);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.desarrollo__btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--geneticapp-secundario);
+    z-index: -1;
+    transition: width var(--geneticapp-transicion-media);
+}
+
+.desarrollo__btn:hover {
+    color: var(--geneticapp-negro);
+    box-shadow: 0 0 15px rgba(116, 193, 167, 0.3);
+}
+
+.desarrollo__btn:hover::after {
+    width: 100%;
+}
+
+/* Rutas con mejor contraste */
+.ruta-metodo {
+    background: transparent;
+}
+
+.ruta-metodo.GET {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 4px var(--geneticapp-secundario);
+}
+
+.ruta-metodo.POST {
+    color: var(--geneticapp-acento);
+}
+
+.ruta-path a:hover {
+    text-shadow: 0 0 5px var(--geneticapp-secundario);
+}
+
+/* Stats con brillo */
+.desarrollo__stat-num {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+}
+
+/* Plano card estilo Ch'aska */
+.plano-card {
+    border-color: var(--geneticapp-gris-suave);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 50%);
+    transition: all var(--geneticapp-transicion-media);
+    position: relative;
+}
+
+.plano-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--geneticapp-secundario);
+    transform: scaleY(0);
+    transition: transform var(--geneticapp-transicion-media);
+}
+
+.plano-card:hover {
+    border-color: var(--geneticapp-secundario);
+    transform: translateY(-2px);
+}
+
+.plano-card:hover::before {
+    transform: scaleY(1);
+}
+
+.plano-card__titulo {
+    color: var(--geneticapp-blanco);
+}
+
+/* Grilla fluida para Ch'aska */
+.desarrollo__grilla {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: var(--geneticapp-espacio-8);
+    padding: var(--geneticapp-espacio-4);
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.desarrollo__grilla > * {
+    border-right: none;
+    border-bottom: none;
+}
+
+/* Hero Ch'aska */
+.desarrollo__hero {
+    grid-column: auto;
+    padding: var(--geneticapp-espacio-10);
+    border-bottom: none;
+    text-align: center;
+    position: relative;
+}
+
+.desarrollo__hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--geneticapp-secundario),
+        transparent
+    );
+}
+
+.desarrollo__hero-titulo {
+    font-size: var(--geneticapp-texto-4xl);
+    color: var(--geneticapp-blanco);
+    text-shadow: 0 0 30px var(--geneticapp-secundario);
+    letter-spacing: 0.05em;
+    margin-bottom: var(--geneticapp-espacio-4);
+}
+
+.desarrollo__hero-subtitulo {
+    font-size: var(--geneticapp-texto-xl);
+    color: var(--geneticapp-gris-medio);
+}
+
+/* Panel Ch'aska */
+.desarrollo__panel:first-child { 
+    grid-row-start:1;
+    grid-row-end:3;
+}
+.desarrollo__panel {
+    padding: 0;
+    animation: aparecer 0.6s ease-out backwards;
+}
+
+.desarrollo__panel:nth-child(2) { animation-delay: 0.1s; }
+.desarrollo__panel:nth-child(3) { animation-delay: 0.2s; }
+.desarrollo__panel:nth-child(4) { animation-delay: 0.3s; }
+
+.desarrollo__panel-full {
+    grid-column: auto;
+}
+
+/* Terminales flotantes escalonadas */
+.desarrollo__panel:nth-child(odd) .desarrollo__terminal {
+    transform: translateX(-10px);
+}
+
+.desarrollo__panel:nth-child(even) .desarrollo__terminal {
+    transform: translateX(10px);
+}
+
+/* Animaciones escalonadas para terminales */
+.desarrollo__grilla > *:nth-child(1) .desarrollo__terminal { animation-delay: 0s; }
+.desarrollo__grilla > *:nth-child(2) .desarrollo__terminal { animation-delay: 1s; }
+.desarrollo__grilla > *:nth-child(3) .desarrollo__terminal { animation-delay: 2s; }
+
+/* Responsive Ch'aska */
+@media (max-width: 48em) {
+    .desarrollo__grilla {
+        padding: var(--geneticapp-espacio-4);
+        gap: var(--geneticapp-espacio-6);
+    }
+
+    .desarrollo__hero-titulo {
+        font-size: var(--geneticapp-texto-2xl);
+    }
+
+    .desarrollo__panel:nth-child(odd) .desarrollo__terminal,
+    .desarrollo__panel:nth-child(even) .desarrollo__terminal {
+        transform: none;
+    }
+
+    .desarrollo__acciones {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* =================================================================
+   RESPONSIVE GLOBAL
+   ================================================================= */
+@media (max-width: 48em) {
+    .desarrollo__nav {
+        flex-wrap: wrap;
+        gap: var(--geneticapp-espacio-3);
+    }
+
+    .desarrollo__nav-lista {
+        gap: var(--geneticapp-espacio-3);
+        flex-wrap: wrap;
+    }
+
+    .desarrollo__stats {
+        flex-wrap: wrap;
+        gap: var(--geneticapp-espacio-4);
+    }
+
+    .desarrollo__terminal-cuerpo {
+        padding: var(--geneticapp-espacio-4);
+        font-size: var(--geneticapp-texto-chico);
+    }
+
+    .ruta-item {
+        flex-wrap: wrap;
+        gap: var(--geneticapp-espacio-2);
+    }
+
+    .ruta-metodo {
+        margin-right: 0;
+    }
+}

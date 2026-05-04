@@ -1,0 +1,254 @@
+/* =================================================================
+   GENETICAPP - DISEÑO QUIPU
+   Editorial, tipografía elegante
+   ================================================================= */
+
+/* ===== RESET QUIPU ===== */
+* {
+    border-radius: 0 !important;
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* ===== HEADER QUIPU ===== */
+#cabecera-principal {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--geneticapp-fondo);
+    border-bottom: 1px solid var(--geneticapp-frente);
+    padding: 0;
+}
+
+.cabecera__contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: var(--geneticapp-espacio-4) var(--geneticapp-espacio-6);
+    max-width: none;
+    gap: var(--geneticapp-espacio-6);
+}
+
+.cabecera__logo {
+    margin-right: auto;
+}
+
+.cabecera__logo-img {
+    height: 28px;
+    width: auto;
+}
+
+.cabecera__nav {
+    display: flex;
+    gap: var(--geneticapp-espacio-6);
+    align-items: center;
+}
+
+.cabecera__nav-link {
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-lg);
+    opacity: 0.7;
+    transition: opacity var(--geneticapp-transicion-rapida);
+    text-decoration: none;
+}
+
+.cabecera__nav-link:hover,
+.cabecera__nav-link.activo {
+    opacity: 1;
+}
+
+.cabecera__acciones {
+    display: flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-3);
+    padding-left: var(--geneticapp-espacio-4);
+    border-left: 1px solid var(--geneticapp-gris-suave);
+}
+
+.cabecera__boton-tema {
+    background: transparent;
+    border: 1px solid var(--geneticapp-frente);
+    color: var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-2);
+    cursor: pointer;
+    font-size: var(--geneticapp-texto-chico);
+}
+
+.cabecera__boton-tema:hover {
+    background: var(--geneticapp-frente);
+    color: var(--geneticapp-fondo);
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+#contenido_principal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== BOTONES QUIPU ===== */
+.boton {
+    border: 1px solid var(--geneticapp-frente);
+    background: transparent;
+    color: var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.boton:hover {
+    background: var(--geneticapp-frente);
+    color: var(--geneticapp-fondo);
+}
+
+.boton--principal {
+    background: var(--geneticapp-frente);
+    color: var(--geneticapp-fondo);
+}
+
+.boton--principal:hover {
+    background: transparent;
+    color: var(--geneticapp-frente);
+}
+
+/* ===== TARJETAS QUIPU ===== */
+.tarjeta {
+    border: 1px solid var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-6);
+    background: transparent;
+    box-shadow: none;
+}
+
+.tarjeta__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-xl);
+}
+
+/* ===== CITAS QUIPU ===== */
+blockquote {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-2xl);
+    padding: var(--geneticapp-espacio-6);
+    padding-left: var(--geneticapp-espacio-8);
+    border-left: 3px solid var(--geneticapp-frente);
+    margin: var(--geneticapp-espacio-6) 0;
+    line-height: 1.4;
+}
+
+blockquote::before {
+    display: none;
+}
+
+/* ===== FOOTER QUIPU ===== */
+#pie-principal {
+    background: var(--geneticapp-fondo);
+    color: var(--geneticapp-frente);
+    border-top: 1px solid var(--geneticapp-frente);
+    margin-top: auto;
+}
+
+.pie__contenedor {
+    max-width: none;
+    padding: 0;
+}
+
+.pie__marca {
+    padding: var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+    margin: 0;
+}
+
+.pie__logo-img {
+    height: 32px;
+}
+
+.pie__columnas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin: 0;
+}
+
+.pie__columna {
+    padding: var(--geneticapp-espacio-6);
+    border-right: 1px solid var(--geneticapp-frente);
+}
+
+.pie__columna:last-child {
+    border-right: none;
+}
+
+.pie__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--geneticapp-frente);
+}
+
+.pie__lista a {
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    opacity: 0.8;
+}
+
+.pie__lista a:hover {
+    opacity: 1;
+}
+
+.pie__inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--geneticapp-espacio-4) var(--geneticapp-espacio-6);
+    border-top: 1px solid var(--geneticapp-frente);
+    margin: 0;
+}
+
+/* ===== RESPONSIVE QUIPU ===== */
+@media (max-width: 48em) {
+    .cabecera__contenedor {
+        padding: var(--geneticapp-espacio-4);
+    }
+
+    .cabecera__nav {
+        display: none;
+    }
+
+    .cabecera__hamburguesa {
+        display: flex;
+    }
+
+    .pie__columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .pie__columna {
+        border-right: none;
+        border-bottom: 1px solid var(--geneticapp-frente);
+    }
+
+    .pie__columna:last-child {
+        border-bottom: none;
+    }
+
+    .pie__inferior {
+        flex-direction: column;
+        gap: var(--geneticapp-espacio-3);
+        text-align: center;
+    }
+}

@@ -1,0 +1,60 @@
+name: Pruebas
+
+on:
+  push:
+    branches: [ desarrollo, escenificacion, produccion ]
+  pull_request:
+    branches: [ desarrollo, escenificacion, produccion ]
+
+env:
+  MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: geneticapp_pruebas
+          MYSQL_USER: geneticapp_test
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_TEST_PASSWORD }}
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Configurar Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+        cache: 'pip'
+
+    - name: Instalar dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install chastack
+        pip install -r requirements.txt || true
+
+    - name: Esperar a MySQL
+      run: |
+        while ! mysqladmin ping -h"127.0.0.1" --silent; do
+          sleep 1
+        done
+
+    - name: Ejecutar pruebas
+      env:
+        MYSQL_HOST: 127.0.0.1
+        MYSQL_PORT: 3306
+        MYSQL_USER: root
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      run: |
+        python -m pruebas

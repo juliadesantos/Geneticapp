@@ -1,0 +1,10 @@
+/* =================================================================
+   GENETICAPP - COLORES QUIPU
+   Tema claro editorial - Estética periodística
+   ================================================================= */
+
+/* ===== VARIABLES SEMÁNTICAS ===== */
+:root {
+    --geneticapp-frente: var(--geneticapp-negro);
+    --geneticapp-fondo: var(--geneticapp-blanco);
+}

@@ -1,0 +1,139 @@
+{% extends "desarrollo/base.html.j2" %}
+
+{% block titulo %}Desarrollo - GENETICAPP{% endblock %}
+
+{% block css_secundario %}
+{{ super() }}
+{% endblock %}
+
+{% block contenido_desarrollo %}
+<!-- Hero -->
+<section class="desarrollo__hero">
+    <h1 class="desarrollo__hero-titulo">Panel de Desarrollo</h1>
+    <p class="desarrollo__hero-subtitulo">Vista general de la aplicación GENETICAPP</p>
+</section>
+
+<div class="desarrollo__grilla">
+    <!-- Árbol de Rutas -->
+    <div class="desarrollo__panel">
+        <div class="desarrollo__terminal">
+            <div class="desarrollo__terminal-cabecera">
+                <span class="desarrollo__terminal-titulo">rutas.py — Árbol de Rutas</span>
+            </div>
+            <div class="desarrollo__terminal-cuerpo">
+                <div class="desarrollo__stats">
+                    <div class="desarrollo__stat">
+                        <span class="desarrollo__stat-num">{{ rutas|length }}</span>
+                        <span>rutas</span>
+                    </div>
+                    <div class="desarrollo__stat">
+                        <span class="desarrollo__stat-num">{{ planos_info|length }}</span>
+                        <span>planos</span>
+                    </div>
+                </div>
+
+                {% for ruta in rutas %}
+                <div class="ruta-item">
+                    {% for metodo in ruta.metodos.split(', ') %}
+                    <span class="ruta-metodo {{ metodo }}">{{ metodo }}</span>
+                    {% endfor %}
+                    <span class="ruta-path">
+                        {% if 'GET' in ruta.metodos and '<' not in ruta.ruta %}
+                        <a href="{{ ruta.ruta }}"
+                           hx-get="{{ ruta.ruta }}"
+                           hx-target="#contenido_principal"
+                           hx-select="#contenido_principal > *"
+                           hx-swap="innerHTML transition:true"
+                           hx-push-url="true">{{ ruta.ruta }}</a>
+                        {% else %}
+                        {{ ruta.ruta }}
+                        {% endif %}
+                    </span>
+                    <span class="ruta-endpoint">{{ ruta.endpoint }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Planos Registrados -->
+    <div class="desarrollo__panel">
+        <div class="desarrollo__terminal">
+            <div class="desarrollo__terminal-cabecera">
+                <span class="desarrollo__terminal-titulo">planos.py — Blueprints</span>
+            </div>
+            <div class="desarrollo__terminal-cuerpo">
+                <div><span class="comment"># Planos registrados en la aplicación</span></div>
+                <br>
+
+                {% if planos_info %}
+                {% for plano in planos_info %}
+                <div class="plano-card">
+                    <h4 class="plano-card__titulo">{{ plano.nombre }}</h4>
+                    <div class="plano-card__meta">
+                        <div><span class="path">URL:</span> {{ plano.url_prefix }}</div>
+                        <div><span class="path">Rutas:</span> {{ plano.num_rutas }}</div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div><span class="comment"># No hay planos adicionales registrados</span></div>
+                <div><span class="comment"># Cree uno con: chastack crear-plano &lt;nombre&gt;</span></div>
+                {% endif %}
+
+                <div class="desarrollo__acciones">
+                    <a href="{{ url_for('inicio') }}"
+                       class="desarrollo__btn"
+                       hx-get="{{ url_for('inicio') }}"
+                       hx-target="#contenido_principal"
+                       hx-select="#contenido_principal > *"
+                       hx-swap="innerHTML transition:true"
+                       hx-push-url="true">
+                        Ir a Inicio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Comandos Rápidos -->
+    <div class="desarrollo__panel desarrollo__panel-full">
+        <div class="desarrollo__terminal">
+            <div class="desarrollo__terminal-cabecera">
+                <span class="desarrollo__terminal-titulo">bash — Comandos Rápidos</span>
+            </div>
+            <div class="desarrollo__terminal-cuerpo">
+                <div><span class="comment"># Comandos útiles de Ch'astack</span></div>
+                <br>
+                <div><span class="prompt">$</span> <span class="highlight">chastack correr</span> <span class="comment"># Iniciar servidor de desarrollo</span></div>
+                <div><span class="prompt">$</span> <span class="highlight">chastack probar</span> <span class="comment"># Ejecutar pruebas</span></div>
+                <div><span class="prompt">$</span> <span class="highlight">chastack crear-plano</span> <span class="path">&lt;nombre&gt;</span> <span class="comment"># Crear nuevo blueprint</span></div>
+                <div><span class="prompt">$</span> <span class="highlight">chastack resetear-bdd</span> <span class="comment"># Resetear base de datos</span></div>
+                <div><span class="prompt">$</span> <span class="highlight">chastack minificar</span> <span class="comment"># Minificar CSS y JS</span></div>
+                <br>
+                <div class="desarrollo__acciones">
+                    <a href="{{ url_for('desarrollo.chastack') }}"
+                       class="desarrollo__btn"
+                       hx-get="{{ url_for('desarrollo.chastack') }}"
+                       hx-target="#contenido_principal"
+                       hx-select="#contenido_principal > *"
+                       hx-swap="innerHTML transition:true"
+                       hx-push-url="true">
+                        Documentación Ch'astack
+                    </a>
+                    <a href="https://github.com/hernanatn/chastack"
+                       target="_blank"
+                       rel="noopener"
+                       class="desarrollo__btn">
+                        Repositorio GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js_secundario %}
+{{ super() }}
+{% endblock %}

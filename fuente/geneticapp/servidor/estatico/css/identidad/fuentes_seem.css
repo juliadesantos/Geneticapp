@@ -1,0 +1,33 @@
+/* =================================================================
+   GENETICAPP - TIPOGRAFÍA SEEM
+   Brutalismo Clínico: tamaños compactos, etiquetas técnicas
+   ================================================================= */
+
+/* ===== ETIQUETAS TÉCNICAS ===== */
+.etiqueta {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: var(--geneticapp-peso-negrita);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--geneticapp-gris-600);
+    margin-bottom: var(--geneticapp-espacio-1);
+}
+
+/* ===== TEXTO MONOESPACIADO PARA DATOS ===== */
+.texto-mono {
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: 0.875rem;
+}
+
+/* ===== SUBTÍTULOS DISCRETOS ===== */
+.subtitulo {
+    font-size: 0.875rem;
+    color: var(--geneticapp-gris-600);
+}
+
+/* ===== PÁRRAFOS: SIN JUSTIFY, MÁS LEGIBLES ===== */
+p {
+    text-align: left;
+    hyphens: none;
+}

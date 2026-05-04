@@ -1,0 +1,81 @@
+/* =================================================================
+   GENETICAPP - ANIMACIONES SEEM
+   Brutalismo Clínico: sutiles, profesionales, sin exceso
+   ================================================================= */
+
+/* ===== FADE IN SEEM ===== */
+@keyframes seem-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== SLIDE UP SEEM ===== */
+@keyframes seem-slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== DESLIZAR DESDE LA DERECHA ===== */
+@keyframes seem-deslizar-derecha {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ===== LATIDO DE INDICADOR ===== */
+@keyframes seem-latido {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+}
+
+/* ===== CLASES DE UTILIDAD SEEM ===== */
+.seem-fade-in {
+    animation: seem-fade-in 0.3s ease-out forwards;
+}
+
+.seem-slide-up {
+    animation: seem-slide-up 0.4s ease-out forwards;
+}
+
+.seem-latido {
+    animation: seem-latido 2s ease-in-out infinite;
+}
+
+/* ===== INDICADOR DE ESTADO PROCESANDO ===== */
+.procesando::after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--geneticapp-acento);
+    margin-left: var(--geneticapp-espacio-2);
+    animation: seem-latido 1.5s ease-in-out infinite;
+}

@@ -1,0 +1,304 @@
+{% extends "desarrollo/base.html.j2" %}
+
+{% block titulo %}Ch'astack - GENETICAPP{% endblock %}
+
+{% block css_secundario %}
+{{ super() }}
+<style>
+/* Hero Ch'astack */
+.chastack__hero {
+    padding: var(--geneticapp-espacio-8) var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.chastack__hero-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-4xl);
+    margin-bottom: var(--geneticapp-espacio-3);
+}
+
+.chastack__hero-subtitulo {
+    opacity: 0.7;
+    font-size: var(--geneticapp-texto-lg);
+    margin-bottom: var(--geneticapp-espacio-6);
+}
+
+.chastack__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--geneticapp-espacio-2);
+    border: 1px solid var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+}
+
+/* Stack grid */
+.chastack__stack {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.chastack__stack-item {
+    padding: var(--geneticapp-espacio-6);
+    border-right: 1px solid var(--geneticapp-frente);
+    text-align: center;
+}
+
+.chastack__stack-item:last-child {
+    border-right: none;
+}
+
+.chastack__stack-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-xl);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.chastack__stack-desc {
+    font-size: var(--geneticapp-texto-base);
+    opacity: 0.7;
+}
+
+/* Sección de comandos */
+.chastack__seccion {
+    padding: var(--geneticapp-espacio-8) var(--geneticapp-espacio-6);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.chastack__seccion-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--geneticapp-espacio-6);
+    padding-bottom: var(--geneticapp-espacio-3);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+/* Grilla de comandos */
+.chastack__comandos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+}
+
+.chastack__comando {
+    padding: var(--geneticapp-espacio-6);
+    border-right: 1px solid var(--geneticapp-frente);
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.chastack__comando:nth-child(even) {
+    border-right: none;
+}
+
+.chastack__comando-nombre {
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-lg);
+    color: var(--geneticapp-principal);
+    margin-bottom: var(--geneticapp-espacio-3);
+}
+
+.chastack__comando-desc {
+    font-size: var(--geneticapp-texto-base);
+    opacity: 0.7;
+    margin-bottom: var(--geneticapp-espacio-4);
+    line-height: 1.6;
+}
+
+.chastack__comando-uso {
+    display: block;
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-4);
+    border: 1px solid var(--geneticapp-frente);
+    background: transparent;
+}
+
+/* Enlaces */
+.chastack__enlaces {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--geneticapp-frente);
+}
+
+.chastack__enlace {
+    flex: 1;
+    padding: var(--geneticapp-espacio-4) var(--geneticapp-espacio-6);
+    border-right: 1px solid var(--geneticapp-frente);
+    text-align: center;
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+    text-decoration: none;
+    transition: all var(--geneticapp-transicion-rapida);
+}
+
+.chastack__enlace:last-child {
+    border-right: none;
+}
+
+.chastack__enlace:hover {
+    background: var(--geneticapp-frente);
+    color: var(--geneticapp-fondo);
+}
+
+@media (max-width: 48em) {
+    .chastack__stack {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chastack__stack-item:nth-child(2n) {
+        border-right: none;
+    }
+
+    .chastack__stack-item:nth-child(2n+1) {
+        border-right: 1px solid var(--geneticapp-frente);
+    }
+
+    .chastack__comandos {
+        grid-template-columns: 1fr;
+    }
+
+    .chastack__comando {
+        border-right: none;
+    }
+
+    .chastack__enlaces {
+        flex-direction: column;
+    }
+
+    .chastack__enlace {
+        border-right: none;
+        border-bottom: 1px solid var(--geneticapp-frente);
+    }
+
+    .chastack__enlace:last-child {
+        border-bottom: none;
+    }
+}
+</style>
+{% endblock %}
+
+{% block contenido_desarrollo %}
+<!-- Hero -->
+<section class="chastack__hero">
+    <h1 class="chastack__hero-titulo">Ch'astack</h1>
+    <p class="chastack__hero-subtitulo">Herramientas de desarrollo para el stack PYFAMUX</p>
+    <span class="chastack__badge">Python + Flask + MySQL</span>
+</section>
+
+<!-- Stack -->
+<div class="chastack__stack">
+    <div class="chastack__stack-item">
+        <h4 class="chastack__stack-titulo">Python 3.13</h4>
+        <p class="chastack__stack-desc">Lenguaje principal</p>
+    </div>
+    <div class="chastack__stack-item">
+        <h4 class="chastack__stack-titulo">Flask</h4>
+        <p class="chastack__stack-desc">Framework web</p>
+    </div>
+    <div class="chastack__stack-item">
+        <h4 class="chastack__stack-titulo">MySQL</h4>
+        <p class="chastack__stack-desc">Base de datos</p>
+    </div>
+    <div class="chastack__stack-item">
+        <h4 class="chastack__stack-titulo">Ch'astack</h4>
+        <p class="chastack__stack-desc">CLI de desarrollo</p>
+    </div>
+</div>
+
+<!-- Comandos -->
+<section class="chastack__seccion">
+    <h2 class="chastack__seccion-titulo">Comandos Disponibles</h2>
+
+    <div class="chastack__comandos">
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack crear</h3>
+            <p class="chastack__comando-desc">Crea un nuevo proyecto con la estructura completa</p>
+            <code class="chastack__comando-uso">$ chastack crear &lt;nombre&gt;</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack inicializar</h3>
+            <p class="chastack__comando-desc">Inicializa el entorno global (Python, MySQL, etc.)</p>
+            <code class="chastack__comando-uso">$ chastack inicializar</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack correr</h3>
+            <p class="chastack__comando-desc">Inicia el servidor de desarrollo Flask</p>
+            <code class="chastack__comando-uso">$ chastack correr [ruta]</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack probar</h3>
+            <p class="chastack__comando-desc">Ejecuta las pruebas del proyecto con pytest</p>
+            <code class="chastack__comando-uso">$ chastack probar [ruta]</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack crear-plano</h3>
+            <p class="chastack__comando-desc">Crea un nuevo blueprint (plano) en el proyecto</p>
+            <code class="chastack__comando-uso">$ chastack crear-plano &lt;nombre&gt; [ruta]</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack resetear-bdd</h3>
+            <p class="chastack__comando-desc">Elimina y recrea la base de datos de desarrollo</p>
+            <code class="chastack__comando-uso">$ chastack resetear-bdd [ruta]</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack minificar</h3>
+            <p class="chastack__comando-desc">Minifica archivos CSS y JavaScript</p>
+            <code class="chastack__comando-uso">$ chastack minificar [ruta]</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack reparar</h3>
+            <p class="chastack__comando-desc">Repara la instalación de Ch'astack</p>
+            <code class="chastack__comando-uso">$ chastack reparar</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack version</h3>
+            <p class="chastack__comando-desc">Muestra la versión actual de Ch'astack</p>
+            <code class="chastack__comando-uso">$ chastack version</code>
+        </div>
+
+        <div class="chastack__comando">
+            <h3 class="chastack__comando-nombre">chastack ayuda</h3>
+            <p class="chastack__comando-desc">Muestra la ayuda y comandos disponibles</p>
+            <code class="chastack__comando-uso">$ chastack ayuda [comando]</code>
+        </div>
+    </div>
+</section>
+
+<!-- Enlaces -->
+<div class="chastack__enlaces">
+    <a href="https://github.com/hernanatn/chastack"
+       target="_blank"
+       rel="noopener"
+       class="chastack__enlace">
+        Repositorio GitHub
+    </a>
+    <a href="https://github.com/hernanatn/chastack/issues"
+       target="_blank"
+       rel="noopener"
+       class="chastack__enlace">
+        Reportar Bug
+    </a>
+    <a href="{{ url_for('desarrollo.inicio') }}"
+       class="chastack__enlace"
+       hx-get="{{ url_for('desarrollo.inicio') }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true">
+        Volver al Panel
+    </a>
+</div>
+{% endblock %}

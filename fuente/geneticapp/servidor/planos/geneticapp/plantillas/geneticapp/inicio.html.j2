@@ -1,0 +1,54 @@
+{% extends "geneticapp/base.html.j2" %}
+
+{% block titulo %}Inicio - GENETICAPP{% endblock %}
+
+{% block contenido_plano %}
+{#
+   PAGINA DE EJEMPLO DEL PLANO: GENETICAPP
+
+   Este contenido es un placeholder de referencia.
+   Muestra la estructura del plano y las rutas disponibles.
+   REEMPLACE TODO ESTE CONTENIDO con su implementacion real.
+
+   Las clases usadas (.caja, .codigo, .etiqueta, etc.) estan
+   definidas en estatico/css/plano.css y son editables/descartables.
+#}
+
+<header class="margen-abajo-6">
+    <p class="texto-chico texto-gris">
+        <a href="{{ url_for('inicio') }}">GENETICAPP</a> / GENETICAPP</p>
+    <h1 class="texto-titulo">GENETICAPP <span class="texto-chico texto-gris">(plano)</span></h1>
+</header>
+
+<section class="caja margen-abajo-4">
+    <h2 class="texto-grande margen-abajo-4">Estructura del plano</h2>
+    <div class="codigo">
+<span class="carpeta">planos/</span>
+  <span class="carpeta">geneticapp/</span>
+    <span class="carpeta">estatico/</span> <span class="comentario"># Archivos estaticos</span>
+      <span class="carpeta">css/</span>
+        <span class="archivo">plano.css</span> <span class="comentario"># Estilos locales (editable)</span>
+      <span class="carpeta">js/</span>
+    <span class="carpeta">plantillas/</span>
+      <span class="carpeta">geneticapp/</span>
+        <span class="archivo">base.html.j2</span>
+        <span class="archivo">inicio.html.j2</span> <span class="comentario"># Esta pagina</span>
+    <span class="carpeta">vistas/</span>
+      <span class="archivo">__init__.py</span> <span class="comentario"># Rutas del plano</span>
+    <span class="archivo">__init__.py</span> <span class="comentario"># Registro del blueprint</span>
+    </div>
+</section>
+
+<section class="caja">
+    <h2 class="texto-grande margen-abajo-4">Rutas disponibles</h2>
+    <ul class="columna">
+        <li>
+            <span class="etiqueta">/geneticapp/</span>
+            <span class="texto-suave">Pagina de inicio del plano</span>
+        </li>
+    </ul>
+    <p class="texto-chico texto-gris margen-arriba-4">
+        Agregue mas rutas en <code class="etiqueta">vistas/__init__.py</code>
+    </p>
+</section>
+{% endblock %}

@@ -1,0 +1,62 @@
+/* =================================================================
+   GENETICAPP - PAGINAS CH'ASKA
+   Tema oscuro, efectos CRT, glows
+   ================================================================= */
+
+/* Cards de planos con efecto hover */
+.plano::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--geneticapp-secundario);
+    transform: scaleY(0);
+    transition: transform var(--geneticapp-transicion-media);
+}
+
+.plano {
+    position: relative;
+    border-color: var(--geneticapp-gris-suave);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 50%);
+}
+
+.plano:hover {
+    border-color: var(--geneticapp-secundario);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 30%);
+}
+
+.plano:hover::before {
+    transform: scaleY(1);
+}
+
+.plano__titulo {
+    color: var(--geneticapp-blanco);
+}
+
+.plano__descripcion {
+    color: var(--geneticapp-gris-medio);
+}
+
+.plano__enlace {
+    text-shadow: 0 0 5px var(--geneticapp-secundario);
+}
+
+/* Enlaces con efecto glow */
+.enlaces__lista li {
+    border-bottom-color: var(--geneticapp-gris-suave);
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-gris-medio);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+    padding-left: var(--geneticapp-espacio-4);
+}

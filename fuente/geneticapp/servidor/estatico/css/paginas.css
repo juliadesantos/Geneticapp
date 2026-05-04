@@ -1,0 +1,239 @@
+/* =================================================================
+   GENETICAPP - ESTILOS DE PAGINAS
+   Estilo: Ch'aska
+
+   Estilos base para componentes reutilizables en paginas:
+   - Terminal (visualizacion de codigo/estructura)
+   - Grilla de planos/cards
+   - Lista de enlaces
+   ================================================================= */
+
+/* =================================================================
+   TERMINAL - ESTILOS BASE
+   Componente para mostrar estructuras de archivos y comandos.
+   Los estilos especificos de cada estilo estan en diseño.css.tpl
+   ================================================================= */
+.terminal {
+    background: var(--geneticapp-fondo);
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-mono);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--geneticapp-frente);
+}
+
+.terminal__cabecera {
+    border-bottom: 1px solid var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.terminal__titulo {
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+.terminal__indicador {
+    width: 8px;
+    height: 8px;
+    border: 1px solid currentColor;
+}
+
+.terminal__cuerpo {
+    padding: var(--geneticapp-espacio-6);
+    overflow-x: auto;
+    position: relative;
+    font-size: var(--geneticapp-texto-base);
+    line-height: 1.8;
+}
+
+.terminal__linea {
+    margin: var(--geneticapp-espacio-1) 0;
+    white-space: pre;
+    position: relative;
+    z-index: 2;
+}
+
+.terminal__prompt {
+    color: var(--geneticapp-secundario);
+    font-weight: var(--geneticapp-peso-negrita);
+}
+
+.terminal__comentario {
+    color: var(--geneticapp-gris-medio);
+    font-style: italic;
+}
+
+.terminal__carpeta {
+    color: var(--geneticapp-principal);
+}
+
+.terminal__archivo {
+    opacity: 0.9;
+}
+
+/* =================================================================
+   GRILLA DE PLANOS/CARDS - ESTILOS BASE
+   Cards para mostrar planos/blueprints disponibles
+   ================================================================= */
+.planos__grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+}
+
+.plano {
+    background: transparent;
+    border: 1px solid var(--geneticapp-frente);
+    padding: var(--geneticapp-espacio-6);
+    transition: background var(--geneticapp-transicion-media);
+    margin-top: -1px;
+    margin-left: -1px;
+}
+
+.plano:hover {
+    background: color-mix(in srgb, var(--geneticapp-frente) 5%, transparent);
+}
+
+.plano__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-xl);
+    color: var(--geneticapp-principal);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.plano__descripcion {
+    margin-bottom: var(--geneticapp-espacio-3);
+    color: var(--geneticapp-gris-oscuro);
+    font-size: var(--geneticapp-texto-base);
+    line-height: 1.6;
+}
+
+.plano__enlace {
+    color: var(--geneticapp-secundario);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    text-decoration: none;
+}
+
+.plano__enlace:hover {
+    text-decoration: underline;
+}
+
+/* =================================================================
+   LISTA DE ENLACES - ESTILOS BASE
+   Lista estilizada para enlaces externos/recursos
+   ================================================================= */
+.enlaces__lista {
+    list-style: none;
+    padding: 0;
+}
+
+.enlaces__lista li {
+    margin: var(--geneticapp-espacio-3) 0;
+    padding-bottom: var(--geneticapp-espacio-3);
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.enlaces__lista li:last-child {
+    border-bottom: none;
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-frente);
+    font-family: var(--geneticapp-fuente-titulos);
+    font-style: italic;
+    font-size: var(--geneticapp-texto-lg);
+    text-decoration: none;
+    transition: color var(--geneticapp-transicion-rapida);
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-principal);
+}
+
+/* =================================================================
+   RESPONSIVE
+   ================================================================= */
+@media (max-width: 48em) {
+    .terminal__cuerpo {
+        padding: var(--geneticapp-espacio-4);
+        font-size: var(--geneticapp-texto-chico);
+    }
+
+    .planos__grilla {
+        grid-template-columns: 1fr;
+    }
+
+    .plano {
+        margin: 0;
+        margin-bottom: -1px;
+    }
+}
+
+
+/* =================================================================
+   GENETICAPP - PAGINAS CH'ASKA
+   Tema oscuro, efectos CRT, glows
+   ================================================================= */
+
+/* Cards de planos con efecto hover */
+.plano::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--geneticapp-secundario);
+    transform: scaleY(0);
+    transition: transform var(--geneticapp-transicion-media);
+}
+
+.plano {
+    position: relative;
+    border-color: var(--geneticapp-gris-suave);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 50%);
+}
+
+.plano:hover {
+    border-color: var(--geneticapp-secundario);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 30%);
+}
+
+.plano:hover::before {
+    transform: scaleY(1);
+}
+
+.plano__titulo {
+    color: var(--geneticapp-blanco);
+}
+
+.plano__descripcion {
+    color: var(--geneticapp-gris-medio);
+}
+
+.plano__enlace {
+    text-shadow: 0 0 5px var(--geneticapp-secundario);
+}
+
+/* Enlaces con efecto glow */
+.enlaces__lista li {
+    border-bottom-color: var(--geneticapp-gris-suave);
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-gris-medio);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-style: normal;
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+    padding-left: var(--geneticapp-espacio-4);
+}

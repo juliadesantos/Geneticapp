@@ -1,0 +1,367 @@
+/* =================================================================
+   GENETICAPP - DISEÑO CH'ASKA
+   Tema oscuro, sidebar lateral, efectos CRT
+   ================================================================= */
+
+/* ===== VARIABLES DE LAYOUT ===== */
+:root {
+    --chaska-sidebar-ancho: 280px;
+    --chaska-sidebar-ancho-movil: 100%;
+    --chaska-nav-altura-movil: 70px;
+}
+
+/* ===== SIN BORDES REDONDEADOS ===== */
+*,
+.boton,
+.tarjeta,
+input,
+textarea,
+select {
+    border-radius: 0 !important;
+}
+
+/* ===== FONDO DE ESTRELLAS ANIMADO ===== */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(currentColor, rgba(255,255,255,0) 2px, transparent 3px),
+        radial-gradient(currentColor, rgba(255,255,255,0) 1px, transparent 2px);
+    background-size: 450px 450px, 200px 200px;
+    background-position: 0 0, 40px 60px;
+    opacity: 0.08;
+    z-index: -2;
+    pointer-events: none;
+    animation: estrellas-parpadear 5s infinite alternate;
+}
+
+@keyframes estrellas-parpadear {
+    0%, 100% { opacity: 0.06; }
+    50% { opacity: 0.12; }
+}
+
+/* ===== LAYOUT PRINCIPAL: SIDEBAR + CONTENIDO ===== */
+body {
+    display: grid;
+    grid:
+    "header main" 1fr
+    "header footer" auto
+    / var(--chaska-sidebar-ancho) 1fr;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: var(--geneticapp-negro);
+    color: var(--geneticapp-blanco);
+}
+
+/* ===== SIDEBAR LATERAL FIJA ===== */
+#cabecera-principal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    grid-area: header;
+    width: var(--chaska-sidebar-ancho);
+    height: 100vh;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    border-right: 1px solid var(--geneticapp-gris-suave);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--geneticapp-espacio-8) var(--geneticapp-espacio-6);
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.cabecera__contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    max-width: none;
+    gap: var(--geneticapp-espacio-8);
+    height: 100%;
+}
+
+.cabecera__logo {
+    margin-bottom: var(--geneticapp-espacio-6);
+}
+
+.cabecera__logo-img {
+    height: auto;
+    width: 100%;
+    max-width: 180px;
+}
+
+.cabecera__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--geneticapp-espacio-4);
+    width: 100%;
+    flex: 1;
+}
+
+.cabecera__nav-link {
+    font-family: var(--geneticapp-fuente-titulos);
+    text-transform: uppercase;
+    font-size: var(--geneticapp-texto-base);
+    letter-spacing: 0.05em;
+    color: var(--geneticapp-gris-medio);
+    padding-left: var(--geneticapp-espacio-4);
+    border-left: 2px solid transparent;
+    transition: all var(--geneticapp-transicion-media);
+    display: block;
+}
+
+.cabecera__nav-link:hover,
+.cabecera__nav-link.activo {
+    color: var(--geneticapp-secundario);
+    padding-left: var(--geneticapp-espacio-6);
+}
+
+.cabecera__nav-link.activo {
+    border-left-color: var(--geneticapp-acento);
+}
+
+.cabecera__acciones {
+    display: flex;
+    flex-direction: column;
+    gap: var(--geneticapp-espacio-3);
+    width: 100%;
+    margin-top: auto;
+    padding-top: var(--geneticapp-espacio-6);
+    border-top: 1px solid var(--geneticapp-gris-suave);
+}
+
+.cabecera__boton-tema {
+    background: transparent;
+    border: 1px solid var(--geneticapp-gris-suave);
+    color: var(--geneticapp-blanco);
+    padding: var(--geneticapp-espacio-2) var(--geneticapp-espacio-4);
+    cursor: pointer;
+    width: fit-content;
+    transition: all var(--geneticapp-transicion-media);
+}
+
+.cabecera__boton-tema:hover {
+    border-color: var(--geneticapp-secundario);
+    color: var(--geneticapp-secundario);
+}
+
+.cabecera__hamburguesa {
+    display: none;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+#contenido_principal {
+    width: 100%;
+    grid-area: main;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== BOTONES CH'ASKA ===== */
+.boton {
+    border: 1px solid var(--geneticapp-secundario);
+    background: transparent;
+    color: var(--geneticapp-secundario);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-8);
+    font-family: var(--geneticapp-fuente-titulos);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.boton::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: var(--geneticapp-secundario);
+    z-index: -1;
+    transition: width var(--geneticapp-transicion-media);
+}
+
+.boton:hover {
+    color: var(--geneticapp-negro);
+    box-shadow: 0 0 20px rgba(116, 193, 167, 0.3);
+}
+
+.boton:hover::after {
+    width: 100%;
+}
+
+.boton--principal {
+    background: var(--geneticapp-secundario);
+    color: var(--geneticapp-negro);
+}
+
+.boton--principal:hover {
+    background: transparent;
+    color: var(--geneticapp-secundario);
+}
+
+.boton--principal::after {
+    display: none;
+}
+
+/* ===== FOOTER CH'ASKA ===== */
+#pie-principal {
+    grid-area: footer;
+    background: transparent;
+    color: var(--geneticapp-blanco);
+    border-top: 1px solid var(--geneticapp-gris-suave);
+    margin-top: auto;
+}
+
+.pie__contenedor {
+    max-width: none;
+    padding: var(--geneticapp-espacio-8);
+}
+
+.pie__columnas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--geneticapp-espacio-8);
+    margin-bottom: var(--geneticapp-espacio-6);
+}
+
+.pie__titulo {
+    color: var(--geneticapp-secundario);
+    font-size: var(--geneticapp-texto-chico);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.pie__texto {
+    color: var(--geneticapp-gris-medio);
+}
+
+.pie__lista a {
+    color: var(--geneticapp-gris-medio);
+}
+
+.pie__lista a:hover {
+    color: var(--geneticapp-secundario);
+}
+
+.pie__inferior {
+    border-top: 1px solid var(--geneticapp-gris-suave);
+    padding-top: var(--geneticapp-espacio-6);
+}
+
+.pie__copyright {
+    color: var(--geneticapp-gris-medio);
+    font-size: var(--geneticapp-texto-chico);
+}
+
+/* ===== TARJETAS CH'ASKA ===== */
+.tarjeta {
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 50%);
+    border: 1px solid var(--geneticapp-gris-suave);
+    padding: var(--geneticapp-espacio-6);
+}
+
+.tarjeta:hover {
+    border-color: var(--geneticapp-secundario);
+}
+
+/* ===== RESPONSIVE MOVIL CH'ASKA ===== */
+@media (max-width: 60em) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header#cabecera-principal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: var(--chaska-nav-altura-movil);
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--geneticapp-espacio-4);
+        border-right: none;
+        border-bottom: 1px solid var(--geneticapp-gris-suave);
+    }
+
+    .cabecera__contenedor {
+        flex-direction: row;
+        height: auto;
+        width: 100%;
+    }
+
+    .cabecera__logo {
+        margin: 0;
+    }
+
+    .cabecera__logo-img {
+        height: 32px;
+        width: auto;
+        max-width: none;
+    }
+
+    .cabecera__nav {
+        position: fixed;
+        top: var(--chaska-nav-altura-movil);
+        left: 0;
+        right: 0;
+        height: calc(100vh - var(--chaska-nav-altura-movil));
+        background: var(--geneticapp-negro);
+        padding: var(--geneticapp-espacio-8);
+        transform: translateX(100%);
+        transition: transform var(--geneticapp-transicion-media);
+        align-items: center;
+        justify-content: center;
+        gap: var(--geneticapp-espacio-6);
+        flex: none;
+    }
+
+    .cabecera__nav.abierto {
+        transform: translateX(0);
+    }
+
+    .cabecera__nav-link {
+        font-size: var(--geneticapp-texto-xl);
+        text-align: center;
+        padding: 0;
+        border-left: none;
+    }
+
+    .cabecera__acciones {
+        display: none;
+    }
+
+    .cabecera__hamburguesa {
+        display: flex;
+    }
+
+    #contenido_principal {
+        margin-left: 0;
+        margin-top: var(--chaska-nav-altura-movil);
+        width: 100%;
+    }
+
+    .pie__columnas {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .pie__inferior {
+        flex-direction: column;
+        gap: var(--geneticapp-espacio-4);
+        text-align: center;
+    }
+}

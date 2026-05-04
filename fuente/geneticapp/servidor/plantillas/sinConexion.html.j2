@@ -1,0 +1,212 @@
+{% extends "base.html.j2" %}
+
+{% block title %}Sin Conexión - GENETICAPP{% endblock %}
+
+{% block css %}
+<style>
+.contenedor-sin_conexion {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.sin-conexion-icon {
+  font-size: 4rem;
+  color: var(--bs-warning);
+  margin-bottom: 1.5rem;
+  animation: latido 2s infinite;
+}
+
+.sin-conexion-logo {
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.sin-conexion-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--bs-dark);
+}
+
+.sin-conexion-message {
+  font-size: 1.1rem;
+  color: var(--bs-secondary);
+  margin-bottom: 2rem;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.boton-reintentar {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.boton-reintentar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.indicador-conexion {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.indicador-conexion.sin-conexion {
+  background-color: var(--bs-danger);
+  color: white;
+}
+
+.indicador-conexion.en-linea {
+  background-color: var(--bs-success);
+  color: white;
+}
+
+.contenedor-sin_conexion > * {
+  animation: ingresoGradual 0.6s ease-out forwards;
+}
+
+.contenedor-sin_conexion > *:nth-child(1) { animation-delay: 150ms; }
+.contenedor-sin_conexion > *:nth-child(2) { animation-delay: 250ms; }
+.contenedor-sin_conexion > *:nth-child(3) { animation-delay: 350ms; }
+.contenedor-sin_conexion > *:nth-child(4) { animation-delay: 450ms; }
+.contenedor-sin_conexion > *:nth-child(5) { animation-delay: 550ms; }
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenedor-sin_conexion {
+    padding: 1rem;
+  }
+  
+  .sin-conexion-logo {
+    max-width: 200px;
+  }
+  
+  .sin-conexion-title {
+    font-size: 1.5rem;
+  }
+  
+  .sin-conexion-message {
+    font-size: 1rem;
+  }
+
+}
+</style>
+{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid">
+
+  
+  <div class="contenedor-sin_conexion">
+    
+    <div class="sin-conexion-icon">
+      <i class="fas fa-wifi-slash"></i>
+    </div>
+    
+    
+    <img src="{{ url_for('static', filename='publico/img/logo.webp') }}" 
+         alt="GENETICAPP" 
+         class="sin-conexion-logo">
+    
+    
+    <h1 class="sin-conexion-title">
+      ¡Ups! No hay conexión
+    </h1>
+    
+    
+    <p class="sin-conexion-message">
+      GENETICAPP necesita una conexión a internet para funcionar correctamente. 
+      Revisá tu conexión y volvé a intentarlo.
+    </p>
+    
+    
+    <button id="boton-reintentar" class="btn btn-primary btn-lg boton-reintentar">
+      <i class="fas fa-sync-alt"></i> Reintentar
+    </button>
+  </div>
+</div>
+{% endblock %}
+
+{% block js_secundario %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const boton_reintentar = document.getElementById('boton-reintentar');
+  const estado_conexion = document.getElementById('indicador-conexion');
+  
+  function chequearConexion() {
+    return navigator.onLine;
+  }
+  
+  function actualizarEstadoConexion() {
+    const esta_en_linea = chequearConexion();
+    
+    if (esta_en_linea) {
+      estado_conexion.className = 'indicador-conexion en-linea mostrar';
+      estado_conexion.innerHTML = '<i class="fas fa-wifi"></i> Conectado';
+  
+      setTimeout(() => {
+        window.location.reload();
+      }, 10000);
+    } else {
+      estado_conexion.className = 'indicador-conexion sin-conexion mostrar';
+      estado_conexion.innerHTML = '<i class="fas fa-wifi-slash"></i> Sin conexión';
+    }
+  }
+  
+  function reintentarConexion() {
+    const icon = boton_reintentar.querySelector('i');
+    const texto_original = boton_reintentar.innerHTML;
+    
+
+    boton_reintentar.disabled = true;
+    boton_reintentar.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verificando...';
+    
+
+    setTimeout(() => {
+      if (chequearConexion()) {
+        boton_reintentar.innerHTML = '<i class="fas fa-check"></i> ¡Conectado!';
+        boton_reintentar.className = 'btn btn-success btn-lg boton-reintentar';
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      } else {
+        boton_reintentar.innerHTML = texto_original;
+        boton_reintentar.disabled = false;
+        boton_reintentar.className = 'btn btn-primary btn-lg boton-reintentar';
+      }
+    }, 1500);
+  }
+  
+  boton_reintentar.addEventListener('click', reintentarConexion);
+  
+  window.addEventListener('online', actualizarEstadoConexion);
+  window.addEventListener('offline', actualizarEstadoConexion);
+  
+  setInterval(actualizarEstadoConexion, 30000);
+  
+  actualizarEstadoConexion();
+});
+</script>
+{% endblock %}

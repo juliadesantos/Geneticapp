@@ -1,0 +1,12 @@
+__pycache__
+__cache__
+.sintetico
+node_modules
+chaska_venv
+venv
+.venv
+.env
+.entorno
+.vscode
+**/servidor/estatico/publico/**
+**/servidor/planos/**/estatico/publico/**

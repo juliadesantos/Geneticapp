@@ -1,0 +1,10 @@
+/* =================================================================
+   GENETICAPP - COLORES CH'ASKA
+   Tema oscuro por defecto - Estética terminal CRT
+   ================================================================= */
+
+/* ===== VARIABLES SEMÁNTICAS ===== */
+:root {
+    --geneticapp-frente: var(--geneticapp-blanco);
+    --geneticapp-fondo: var(--geneticapp-negro);
+}

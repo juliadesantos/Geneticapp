@@ -1,0 +1,24 @@
+{% extends "base.html.j2" %}
+
+{% block titulo %}GENETICAPP - GENETICAPP{% endblock %}
+
+{% block css_secundario %}
+{{ super() }}
+{# CSS local del plano - editable/descartable #}
+<link rel="stylesheet" href="{{ url_for('.static', filename='css/geneticapp.css') }}">
+{% endblock %}
+
+{% block contenido_principal %}
+{#
+   TEMPLATE BASE DEL PLANO: GENETICAPP.
+   Este HTML es minimal y usa clases utilitarias genericas.
+   Puede reemplazar todo el contenido de este bloque libremente.
+#}
+<article class="contenedor espacio-6">
+    {% block contenido_plano required %}{% endblock %}
+</article>
+{% endblock contenido_principal %}
+
+{% block js_secundario %}
+{{ super() }}
+{% endblock %}

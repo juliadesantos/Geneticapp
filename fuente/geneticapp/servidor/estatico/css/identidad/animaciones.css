@@ -1,0 +1,140 @@
+/* =================================================================
+   GENETICAPP - ANIMACIONES
+   Estilo: Ch'aska
+   ================================================================= */
+
+/* ===== TRANSICIONES GLOBALES ===== */
+* {
+    transition: all 150ms ease-in-out;
+}
+
+/* ===== ANIMACIÓN: PULSO ===== */
+@keyframes pulso {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ===== ANIMACIÓN: LATIDO ===== */
+@keyframes latido {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.01);
+        opacity: 0.6;
+    }
+}
+
+/* ===== ANIMACIÓN: INGRESO GRADUAL ===== */
+@keyframes ingresoGradual {
+    from {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}
+
+/* ===== ANIMACIÓN: FLOTAR (para elementos decorativos) ===== */
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+/* ===== ANIMACIÓN: FLOTAR SUAVE ===== */
+@keyframes flotarSuave {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* ===== ANIMACIÓN: DESLIZAR ABAJO ===== */
+@keyframes deslizarAbajo {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== ANIMACIÓN: FADE IN ===== */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== ANIMACIÓN: PARPADEO DE ESTRELLAS (Ch'aska) ===== */
+@keyframes estrellas-parpadear {
+    0%, 100% {
+        opacity: 0.06;
+    }
+    50% {
+        opacity: 0.12;
+    }
+}
+
+/* ===== ANIMACIÓN: ÓRBITA ===== */
+@keyframes orbitar {
+    0% {
+        transform: rotate(0deg) translateX(120px) rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg) translateX(120px) rotate(-360deg);
+    }
+}
+
+/* ===== CLASES DE UTILIDAD ===== */
+.animacion-flotar {
+    animation: flotar 6s ease-in-out infinite;
+}
+
+.animacion-flotar--delay-1 {
+    animation-delay: 1.5s;
+}
+
+.animacion-flotar--delay-2 {
+    animation-delay: 3s;
+}
+
+.animacion-pulso {
+    animation: pulso 2s infinite;
+}
+
+.animacion-aparecer {
+    animation: aparecer 0.5s ease-out forwards;
+}
+
+/* ===== RESPETO A PREFERENCIAS DEL USUARIO ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}

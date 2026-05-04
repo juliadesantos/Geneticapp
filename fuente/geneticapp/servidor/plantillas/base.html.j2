@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es" class="tema-{{TEMA}}">
+<head hx-head="merge">
+    <!-- 1. Meta Tags Esenciales -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 2. SEO y Meta -->
+    <title>{% block titulo %}GENETICAPP{% endblock titulo %}</title>
+    {% block descripcion %}<meta name="description" content="">{% endblock descripcion %}
+    {% block palabras_clave %}<meta name="keywords" content="">{% endblock palabras_clave %}
+    {% block url_canonico %}{% endblock url_canonico %}
+
+    <!-- Open Graph -->
+    {% block og_title %}<meta property="og:title" content="GENETICAPP">{% endblock og_title %}
+    {% block og_description %}<meta property="og:description" content="">{% endblock og_description %}
+    {% block og_image %}{% endblock og_image %}
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_AR">
+
+    <!-- Twitter Cards -->
+    {% block twitter_card %}<meta name="twitter:card" content="summary">{% endblock twitter_card %}
+    {% block twitter_title %}<meta name="twitter:title" content="GENETICAPP">{% endblock twitter_title %}
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#121421">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <!-- Schema.org JSON-LD -->
+    {% block SEO_SD_GOOGLE %}{% endblock SEO_SD_GOOGLE %}
+
+    <!-- 3. Fuentes -->
+    {% block FUENTES %}
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+    <link rel="stylesheet" href="https://use.typekit.net/fmj7lhv.css">
+    {% endblock FUENTES %}
+
+    <!-- 4. CSS Esencial -->
+    {% block css_esencial %}
+    {% if CONFIG.AMBIENTE_GENETICAPP != 'DESARROLLO' %}
+    {# PRODUCCION: CSS incrustado para eliminar bloqueo de renderizado #}
+    <style id="css-esencial">
+        {% include "min-css/identidad/colores.css" %}
+        {% include "min-css/identidad/fuentes.css" %}
+        {% include "min-css/identidad/animaciones.css" %}
+        {% include "min-css/identidad/diseño.css" %}
+        {% include "min-css/base.css" %}
+        {% include "min-css/paginas.css" %}
+    </style>
+    {% else %}
+    {# DESARROLLO: Archivos externos para facilitar debugging #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='{}/identidad/colores.css'.format(CONFIG.get('CSS'))) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='{}/identidad/fuentes.css'.format(CONFIG.get('CSS'))) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='{}/identidad/animaciones.css'.format(CONFIG.get('CSS'))) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='{}/identidad/diseño.css'.format(CONFIG.get('CSS'))) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='{}/base.css'.format(CONFIG.get('CSS'))) }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='{}/paginas.css'.format(CONFIG.get('CSS'))) }}">
+    {% endif %}
+    {% endblock css_esencial %}
+
+    <!-- 5. CSS Secundario (por pagina) -->
+    {% block css_secundario %}{% endblock css_secundario %}
+
+    <!-- 6. JS Esencial -->
+    {% block js_esencial %}
+    {% if CONFIG.AMBIENTE_GENETICAPP != 'DESARROLLO' %}
+    <script id="js-esencial">
+        {% include "min-js/ext/htmx/htmx.min.js" %}
+        {% include "min-js/ext/htmx/htmx-ext-head-support.min.js" %}
+        {% include "min-js/modulos/utiles.js" %}
+        {% include "min-js/global.js" %}
+    </script>
+    {% else %}
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.min.js" integrity="sha384-/TgkGk7p307TH7EXJDuUlgG3Ce1UVolAOFopFekQkkXihi5u/6OCvVKyz1W+idaz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/htmx-ext-head-support@2.0.5" integrity="sha384-cvMqHzjCJsOHgGuyB3sWXaUSv/Krm0BdzjuI1rtkjCbL1l1oHJx+cHyVRJhyuEz0" crossorigin="anonymous"></script>    <script type="module" src="{{ url_for('static', filename='js/modulos/utiles.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/global.js') }}"></script>
+    {% endif %}
+    <script hx-preserve>
+        if (typeof ESTADO !== 'undefined') { ESTADO.iniciar(); }
+    </script>
+    {% endblock js_esencial %}
+
+</head>
+<body hx-ext="head-support">
+
+    <header id="cabecera-principal">
+        {% block cabecera %}
+        <div class="cabecera__contenedor">
+            <a class="cabecera__logo" href="{{ url_for('.inicio') }}">
+                <img class="cabecera__logo-img"
+                     src="{{ url_for('static', filename='publico/img/logo.webp') }}"
+                     alt="GENETICAPP"
+                     height="32">
+            </a>
+
+            <nav class="cabecera__nav" id="nav-principal">
+                {% block nav_links %}
+                <a href="{{ url_for('inicio') }}"
+                   class="cabecera__nav-link"
+                   hx-get="{{ url_for('inicio') }}"
+                   hx-target="#contenido_principal"
+                   hx-select="#contenido_principal > *"
+                   hx-swap="innerHTML transition:true"
+                   hx-push-url="true">
+                    Inicio
+                </a>
+                {% if CONFIG.AMBIENTE_GENETICAPP == 'DESARROLLO' %}
+                <a href="{{ url_for('desarrollo.inicio') }}"
+                   class="cabecera__nav-link"
+                   hx-get="{{ url_for('desarrollo.inicio') }}"
+                   hx-target="#contenido_principal"
+                   hx-select="#contenido_principal > *"
+                   hx-swap="innerHTML transition:true"
+                   hx-push-url="true">
+                    Inicio
+                </a>
+                {% endif %}
+                {% endblock nav_links %}
+            </nav>
+
+            <div class="cabecera__acciones">
+                {% block acciones_header %}
+                <button class="cabecera__boton-tema"
+                        onclick="window.ESTADO && ESTADO.cambiarTema()"
+                        aria-label="Cambiar tema">
+                    <span class="icono-tema material-symbols-outlined">contrast</span>
+                </button>
+                {% endblock acciones_header %}
+            </div>
+
+            <button class="cabecera__hamburguesa"
+                    aria-label="Abrir menu"
+                    aria-expanded="false"
+                    id="btn-menu-movil">
+                <span class="cabecera__hamburguesa-linea"></span>
+                <span class="cabecera__hamburguesa-linea"></span>
+                <span class="cabecera__hamburguesa-linea"></span>
+            </button>
+        </div>
+        {% endblock cabecera %}
+    </header>
+
+    <main id="contenido_principal">
+        {% block contenido_principal required %}{% endblock contenido_principal %}
+    </main>
+
+    <footer id="pie-principal" class="pie">
+        {% block pie %}
+        <div class="pie__contenedor">
+            <div class="pie__marca">
+                <a class="pie__logo" href="{{ url_for('.inicio') }}">
+                    <img class="pie__logo-img"
+                         src="{{ url_for('static', filename='publico/img/logo.webp') }}"
+                         alt="GENETICAPP"
+                         height="48">
+                </a>
+            </div>
+
+            <div class="pie__columnas">
+                <div class="pie__columna">
+                    <h6 class="pie__titulo">Sobre Nosotros</h6>
+                    <p class="pie__texto"></p>
+                </div>
+                <div class="pie__columna">
+                    <h6 class="pie__titulo">Enlaces</h6>
+                    <ul class="pie__lista">
+                        <li><a href="#">Terminos y Condiciones</a></li>
+                        <li><a href="#">Privacidad</a></li>
+                        <li><a href="#">Preguntas Frecuentes</a></li>
+                    </ul>
+                </div>
+                <div class="pie__columna">
+                    <h6 class="pie__titulo">Contacto</h6>
+                    <p class="pie__texto">
+                        soporte@geneticapp.ar
+                    </p>
+                </div>
+            </div>
+
+            <div class="pie__inferior">
+                <small class="pie__copyright">&copy; 2025 GENETICAPP. Todos los derechos reservados.</small>
+                <a class="pie__chaska" href="https://chaska.ar" target="_blank" rel="noopener">
+                    <img src="{{ url_for('static', filename='publico/img/hecho_por_chaska.webp') }}"
+                         alt="Hecho por Ch'aska"
+                         height="24">
+                </a>
+            </div>
+        </div>
+        {% endblock pie %}
+    </footer>
+
+    <!-- JS Secundario -->
+    {% block js_secundario %}{% endblock js_secundario %}
+</body>
+</html>

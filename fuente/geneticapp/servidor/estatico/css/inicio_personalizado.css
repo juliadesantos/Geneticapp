@@ -1,0 +1,171 @@
+/* =================================================================
+   GENETICAPP - INICIO PERSONALIZADO
+   Estilos neutros que funcionan con cualquier paleta
+   ================================================================= */
+
+/* ===== HERO ===== */
+.inicio__hero {
+    padding: var(--geneticapp-espacio-8) var(--geneticapp-espacio-6);
+    text-align: center;
+    background: var(--geneticapp-gris-claro);
+}
+
+.inicio__hero-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-3xl);
+    font-weight: var(--geneticapp-peso-negrita);
+    margin-bottom: var(--geneticapp-espacio-4);
+    color: var(--geneticapp-principal);
+}
+
+.inicio__hero-descripcion {
+    font-size: var(--geneticapp-texto-lg);
+    color: var(--geneticapp-gris-oscuro);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.inicio__contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--geneticapp-espacio-6);
+    padding: var(--geneticapp-espacio-6);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ===== SECCIONES ===== */
+.inicio__seccion {
+    padding: var(--geneticapp-espacio-6);
+    border: 1px solid var(--geneticapp-gris-suave);
+    border-radius: var(--geneticapp-radio-borde);
+    background: var(--geneticapp-fondo);
+}
+
+.inicio__seccion-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-xl);
+    color: var(--geneticapp-principal);
+    margin-bottom: var(--geneticapp-espacio-4);
+}
+
+/* ===== TERMINAL ===== */
+.terminal {
+    background: var(--geneticapp-negro);
+    border-radius: var(--geneticapp-radio-borde);
+    overflow: hidden;
+}
+
+.terminal__cabecera {
+    background: var(--geneticapp-gris-oscuro);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-4);
+}
+
+.terminal__titulo {
+    color: var(--geneticapp-blanco);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+}
+
+.terminal__cuerpo {
+    padding: var(--geneticapp-espacio-6);
+    color: var(--geneticapp-blanco);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+    line-height: 1.8;
+}
+
+.terminal__prompt {
+    color: var(--geneticapp-secundario);
+}
+
+.terminal__carpeta {
+    color: var(--geneticapp-acento);
+}
+
+.terminal__comentario {
+    color: var(--geneticapp-gris-medio);
+}
+
+/* ===== GRILLA DE PLANOS ===== */
+.planos__grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--geneticapp-espacio-4);
+    margin-top: var(--geneticapp-espacio-4);
+}
+
+.plano {
+    padding: var(--geneticapp-espacio-4);
+    border: 1px solid var(--geneticapp-gris-suave);
+    border-radius: var(--geneticapp-radio-borde);
+    background: var(--geneticapp-fondo);
+    transition: box-shadow var(--geneticapp-transicion-media);
+}
+
+.plano:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.plano__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-lg);
+    color: var(--geneticapp-principal);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.plano__descripcion {
+    color: var(--geneticapp-gris-oscuro);
+    margin-bottom: var(--geneticapp-espacio-3);
+    line-height: 1.5;
+}
+
+.plano__enlace {
+    color: var(--geneticapp-secundario);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+}
+
+/* ===== LISTA DE ENLACES ===== */
+.enlaces__lista {
+    list-style: none;
+    padding: 0;
+}
+
+.enlaces__lista li {
+    padding: var(--geneticapp-espacio-3) 0;
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.enlaces__lista li:last-child {
+    border-bottom: none;
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-principal);
+    transition: color var(--geneticapp-transicion-rapida);
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-secundario);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 48em) {
+    .inicio__hero {
+        padding: var(--geneticapp-espacio-6);
+    }
+
+    .inicio__hero-titulo {
+        font-size: var(--geneticapp-texto-2xl);
+    }
+
+    .inicio__contenedor {
+        padding: var(--geneticapp-espacio-4);
+    }
+
+    .planos__grilla {
+        grid-template-columns: 1fr;
+    }
+}

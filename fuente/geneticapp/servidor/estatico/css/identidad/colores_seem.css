@@ -1,0 +1,29 @@
+/* =================================================================
+   GENETICAPP - COLORES SEEM
+   Brutalismo Clínico - Tema claro con fondo gris
+   ================================================================= */
+
+/* ===== VARIABLES SEMÁNTICAS ===== */
+:root {
+    --geneticapp-frente: var(--geneticapp-negro);
+    --geneticapp-fondo: var(--geneticapp-blanco);
+
+    /* Fondo de página gris clínico */
+    --geneticapp-clinico: var(--geneticapp-principal);
+
+    /* Grises específicos para UI técnica */
+    --geneticapp-gris-100: #f8fafc;
+    --geneticapp-gris-200: #e2e8f0;
+    --geneticapp-gris-300: #cbd5e1;
+    --geneticapp-gris-600: #64748b;
+}
+
+/* ===== TEMA OSCURO SEEM ===== */
+:root.tema-oscuro {
+    /* Grises oscuros específicos de Seem */
+    --geneticapp-clinico: #2a2d45;
+    --geneticapp-gris-100: #222432;
+    --geneticapp-gris-200: #424455;
+    --geneticapp-gris-300: #5f627d;
+    --geneticapp-gris-600: #83869f;
+}

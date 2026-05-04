@@ -1,0 +1,337 @@
+/* =================================================================
+   GENETICAPP - ESTILOS DE LA PAGINA DE INICIO
+   Estilo: Ch'aska
+
+   Este archivo contiene los estilos semanticos de la pagina de inicio.
+   Es autocontenido y puede ser editado/reemplazado sin afectar
+   el sistema de diseno global.
+
+   Los estilos específicos de cada aspecto se cargan desde archivos
+   separados (inicio_chaska.css.tpl, inicio_quipu.css.tpl, etc.)
+   ================================================================= */
+
+
+/* =================================================================
+   GENETICAPP - INICIO CH'ASKA
+   Tema oscuro, terminal CRT, sidebar lateral
+   ================================================================= */
+
+/* ===== SECCIONES CON SCROLL SNAP ===== */
+.seccion-snap {
+    min-height: 100vh;
+    padding: var(--geneticapp-espacio-8);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ===== HERO COMPACTO ===== */
+.inicio__hero {
+    padding: var(--geneticapp-espacio-6) var(--geneticapp-espacio-8);
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.inicio__hero-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-3xl);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    margin: 0 0 var(--geneticapp-espacio-2) 0;
+    color: var(--geneticapp-secundario);
+    text-shadow: 0 0 20px var(--geneticapp-secundario);
+}
+
+.inicio__hero-titulo strong {
+    display: inline;
+    font-weight: 700;
+    color: var(--geneticapp-secundario);
+}
+
+.inicio__hero-descripcion {
+    font-size: var(--geneticapp-texto-base);
+    color: var(--geneticapp-gris-medio);
+    margin: 0;
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+.inicio__contenedor {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr auto auto;
+    grid-template-areas:
+        "proyecto planos"
+        "chaskapp planos"
+        "enlaces enlaces";
+    gap: var(--geneticapp-espacio-6);
+    padding: var(--geneticapp-espacio-6);
+}
+
+/* ===== SECCIONES ===== */
+.inicio__seccion {
+    padding: var(--geneticapp-espacio-6);
+    border: 1px solid var(--geneticapp-gris-suave);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 40%);
+}
+
+.inicio__seccion:first-child {
+    grid-area: proyecto;
+}
+
+.inicio__seccion:nth-child(2) {
+    grid-area: planos;
+}
+
+.inicio__seccion:nth-child(3) {
+    grid-area: chaskapp;
+}
+
+.inicio__seccion:nth-child(4) {
+    grid-area: enlaces;
+}
+
+.inicio__seccion-titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-xl);
+    color: var(--geneticapp-secundario);
+    margin-bottom: var(--geneticapp-espacio-4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ===== TERMINAL ESTILO CRT ===== */
+.terminal {
+    background: var(--geneticapp-principal);
+    border: 1px solid var(--geneticapp-secundario);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 0 40px rgba(116, 193, 167, 0.1),
+        inset 0 0 60px rgba(0, 0, 0, 0.4);
+    animation: flotar 6s ease-in-out infinite;
+}
+
+/* Scanlines CRT */
+.terminal::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.08) 2px,
+        rgba(0, 0, 0, 0.08) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Efecto de brillo de pantalla */
+.terminal::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(116, 193, 167, 0.03) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.terminal__cabecera {
+    background: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid var(--geneticapp-secundario);
+    padding: var(--geneticapp-espacio-3) var(--geneticapp-espacio-6);
+    position: relative;
+    z-index: 2;
+}
+
+.terminal__titulo {
+    color: var(--geneticapp-secundario);
+    font-family: var(--geneticapp-fuente-mono);
+    text-transform: uppercase;
+    font-size: var(--geneticapp-texto-chico);
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 10px var(--geneticapp-secundario);
+}
+
+.terminal__indicador {
+    width: 8px;
+    height: 8px;
+    background: var(--geneticapp-secundario);
+    animation: pulso 2s infinite;
+    box-shadow: 0 0 8px var(--geneticapp-secundario);
+}
+
+.terminal__cuerpo {
+    padding: var(--geneticapp-espacio-8);
+    position: relative;
+    z-index: 2;
+    color: var(--geneticapp-blanco);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-base);
+    line-height: 2;
+}
+
+.terminal__linea {
+    margin: var(--geneticapp-espacio-1) 0;
+}
+
+.terminal__prompt {
+    color: var(--geneticapp-secundario);
+    font-weight: var(--geneticapp-peso-negrita);
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+}
+
+.terminal__carpeta {
+    color: var(--geneticapp-acento);
+    text-shadow: 0 0 6px var(--geneticapp-acento);
+}
+
+.terminal__comentario {
+    color: var(--geneticapp-gris-medio);
+    font-style: italic;
+}
+
+.terminal__archivo {
+    color: var(--geneticapp-blanco);
+    opacity: 0.9;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotar {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes pulso {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* ===== GRILLA DE PLANOS ===== */
+.planos__grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--geneticapp-espacio-6);
+    margin-top: var(--geneticapp-espacio-6);
+}
+
+.plano {
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 50%);
+    border: 1px solid var(--geneticapp-gris-suave);
+    padding: var(--geneticapp-espacio-6);
+    transition: all var(--geneticapp-transicion-media);
+    position: relative;
+}
+
+.plano::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--geneticapp-secundario);
+    transform: scaleY(0);
+    transition: transform var(--geneticapp-transicion-media);
+}
+
+.plano:hover {
+    border-color: var(--geneticapp-secundario);
+    background: color-mix(in srgb, var(--geneticapp-principal), transparent 30%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.plano:hover::before {
+    transform: scaleY(1);
+}
+
+.plano__titulo {
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-xl);
+    color: var(--geneticapp-blanco);
+    margin-bottom: var(--geneticapp-espacio-2);
+}
+
+.plano__descripcion {
+    color: var(--geneticapp-gris-medio);
+    margin-bottom: var(--geneticapp-espacio-4);
+    line-height: 1.6;
+}
+
+.plano__enlace {
+    color: var(--geneticapp-secundario);
+    font-family: var(--geneticapp-fuente-mono);
+    font-size: var(--geneticapp-texto-chico);
+}
+
+.plano__enlace:hover {
+    text-shadow: 0 0 8px var(--geneticapp-secundario);
+}
+
+/* ===== LISTA DE ENLACES ===== */
+.enlaces__lista {
+    list-style: none;
+    padding: 0;
+}
+
+.enlaces__lista li {
+    margin: var(--geneticapp-espacio-4) 0;
+    padding-bottom: var(--geneticapp-espacio-4);
+    border-bottom: 1px solid var(--geneticapp-gris-suave);
+}
+
+.enlaces__lista li:last-child {
+    border-bottom: none;
+}
+
+.enlaces__lista a {
+    color: var(--geneticapp-gris-medio);
+    font-family: var(--geneticapp-fuente-titulos);
+    font-size: var(--geneticapp-texto-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all var(--geneticapp-transicion-media);
+}
+
+.enlaces__lista a:hover {
+    color: var(--geneticapp-secundario);
+    padding-left: var(--geneticapp-espacio-4);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 60em) {
+    .inicio__hero {
+        padding: var(--geneticapp-espacio-4);
+    }
+
+    .inicio__hero-titulo {
+        font-size: var(--geneticapp-texto-xl);
+    }
+
+    .inicio__contenedor {
+        display: flex;
+        flex-direction: column;
+        padding: var(--geneticapp-espacio-4);
+    }
+
+    .inicio__seccion {
+        padding: var(--geneticapp-espacio-4);
+    }
+
+    .planos__grilla {
+        grid-template-columns: 1fr;
+    }
+}
