@@ -8,127 +8,44 @@
 {% endblock %}
 
 {% block contenido_principal %}
-<!-- Hero -->
 <section class="inicio__hero">
-    <h1 class="inicio__hero-titulo">GENETICAPP</h1>
-    <p class="inicio__hero-descripcion"></p>
+    <h1 class="inicio__hero-titulo">GeneticApp</h1>
+    <p class="inicio__hero-descripcion">
+        Base de consulta de enfermedades genéticas y sus tratamientos farmacológicos.
+        Registrá enfermedades, sus genes afectados y los medicamentos asociados.
+    </p>
 </section>
 
 <div class="inicio__contenedor">
-    <!-- Terminal con estructura del proyecto -->
-    <section class="inicio__seccion">
-        <h2 class="inicio__seccion-titulo">Estructura del Proyecto</h2>
+    <div class="planos__grilla">
+        <article class="plano">
+            <h2 class="plano__titulo">Enfermedades</h2>
+            <p class="plano__descripcion">
+                Consultá y administrá enfermedades genéticas: gen afectado, tipo de herencia y síntomas.
+            </p>
+            <a class="plano__enlace"
+               href="{{ url_for('geneticapp_servidor_planos_enfermedades.inicio') }}"
+               hx-get="{{ url_for('geneticapp_servidor_planos_enfermedades.inicio') }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true">Ver enfermedades →</a>
+        </article>
 
-        <div class="terminal">
-            <div class="terminal__cabecera">
-                <span class="terminal__titulo">geneticapp </span>
-                <span class="terminal__indicador"></span>
-            </div>
-            <div class="terminal__cuerpo">
-                <div class="terminal__linea"><span class="terminal__prompt">$</span> tree geneticapp/</div>
-                <div class="terminal__linea"></div>
-                <div class="terminal__linea"><span class="terminal__carpeta">geneticapp/</span></div>
-                <div class="terminal__linea">  <span class="terminal__carpeta">.secretos/</span> <span class="terminal__comentario"># Tokens y llaves secretas</span></div>
-                <div class="terminal__linea">  <span class="terminal__carpeta">docs/</span> <span class="terminal__comentario"># Documentación</span></div>
-                <div class="terminal__linea">  <span class="terminal__carpeta">fuente/</span></div>
-                <div class="terminal__linea">    <span class="terminal__carpeta">geneticapp/</span></div>
-                <div class="terminal__linea">      <span class="terminal__carpeta">bdd/</span> <span class="terminal__comentario"># Base de datos</span></div>
-                <div class="terminal__linea">      <span class="terminal__carpeta">cerebro/</span> <span class="terminal__comentario"># Lógica de negocio</span></div>
-                <div class="terminal__linea">      <span class="terminal__carpeta">pruebas/</span> <span class="terminal__comentario"># Tests</span></div>
-                <div class="terminal__linea">      <span class="terminal__carpeta">servidor/</span> <span class="terminal__comentario"># App Flask</span></div>
-                <div class="terminal__linea">        <span class="terminal__carpeta">estatico/</span> <span class="terminal__comentario"># CSS, JS, imágenes</span></div>
-                <div class="terminal__linea">        <span class="terminal__carpeta">plantillas/</span> <span class="terminal__comentario"># Jinja2 templates</span></div>
-                <div class="terminal__linea">        <span class="terminal__carpeta">planos/</span> <span class="terminal__comentario"># Flask blueprints</span></div>
-                <div class="terminal__linea">      <span class="terminal__carpeta">utiles/</span> <span class="terminal__comentario"># Utilidades</span></div>
-                <div class="terminal__linea">  <span class="terminal__archivo">README.md</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Planos disponibles -->
-    <section class="inicio__seccion">
-        <h2 class="inicio__seccion-titulo">Planos (Blueprints)</h2>
-        <p>Los planos representan submódulos autocontenidos y segregados de la aplicación.</p>
-
-        <div class="planos__grilla">
-            <!-- Plano principal (servidor) -->
-            <article class="plano">
-                <h3 class="plano__titulo">Principal</h3>
-                <p class="plano__descripcion">Ruta base de la aplicación</p>
-                <a class="plano__enlace"
-                   href="{{ url_for('.inicio') }}"
-                   hx-get="{{ url_for('.inicio') }}"
-                   hx-target="#contenido_principal"
-                   hx-select="#contenido_principal > *"
-                   hx-swap="innerHTML transition:true"
-                   hx-push-url="true">/</a>
-            </article>
-            <article class="plano">
-                <h3 class="plano__titulo">ENFERMEDADES</h3>
-                <p class="plano__descripcion">Plano Enfermedades</p>
-                <a class="plano__enlace"
-                   href="{{ url_for('geneticapp_servidor_planos_enfermedades.inicio') }}"
-                   hx-get="{{ url_for('geneticapp_servidor_planos_enfermedades.inicio') }}"
-                   hx-target="#contenido_principal"
-                   hx-select="#contenido_principal > *"
-                   hx-swap="innerHTML transition:true"
-                   hx-push-url="true">/enfermedades/</a>
-            </article>
-            <article class="plano">
-                <h3 class="plano__titulo">MEDICAMENTOS</h3>
-                <p class="plano__descripcion">Plano Medicamentos</p>
-                <a class="plano__enlace"
-                   href="{{ url_for('geneticapp_servidor_planos_medicamentos.inicio') }}"
-                   hx-get="{{ url_for('geneticapp_servidor_planos_medicamentos.inicio') }}"
-                   hx-target="#contenido_principal"
-                   hx-select="#contenido_principal > *"
-                   hx-swap="innerHTML transition:true"
-                   hx-push-url="true">/medicamentos/</a>
-            </article>
-            <article class="plano">
-                <h3 class="plano__titulo">GENETICAPP</h3>
-                <p class="plano__descripcion">Plano geneticapp</p>
-                <a class="plano__enlace"
-                   href="{{ url_for('geneticapp_servidor_planos_geneticapp.inicio') }}"
-                   hx-get="{{ url_for('geneticapp_servidor_planos_geneticapp.inicio') }}"
-                   hx-target="#contenido_principal"
-                   hx-select="#contenido_principal > *"
-                   hx-swap="innerHTML transition:true"
-                   hx-push-url="true">/geneticapp/</a>
-            </article>
-        </div>
-    </section>
-
-    <!-- Comandos de Ch'astack -->
-    <section class="inicio__seccion">
-        <h2 class="inicio__seccion-titulo">Comandos de Ch'askapp</h2>
-        <p>Use estos comandos desde la terminal para gestionar el proyecto:</p>
-
-        <div class="terminal">
-            <div class="terminal__cabecera">
-                <span class="terminal__titulo">comandos disponibles</span>
-                <span class="terminal__indicador"></span>
-            </div>
-            <div class="terminal__cuerpo">
-                <div class="terminal__linea"><span class="terminal__prompt">$</span> chaskapp correr <span class="terminal__comentario"># Iniciar servidor de desarrollo</span></div>
-                <div class="terminal__linea"><span class="terminal__prompt">$</span> chaskapp probar <span class="terminal__comentario"># Ejecutar pruebas</span></div>
-                <div class="terminal__linea"><span class="terminal__prompt">$</span> chaskapp minificar <span class="terminal__comentario"># Minificar CSS y JS</span></div>
-                <div class="terminal__linea"><span class="terminal__prompt">$</span> chaskapp resetear-bdd <span class="terminal__comentario"># Recrear base de datos</span></div>
-                <div class="terminal__linea"><span class="terminal__prompt">$</span> chaskapp reparar <span class="terminal__comentario"># Reparar instalación</span></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Links útiles -->
-    <section class="inicio__seccion">
-        <h2 class="inicio__seccion-titulo">Enlaces</h2>
-        <ul class="enlaces__lista">
-            <li><a href="https://github.com/hernanatn/chastack" target="_blank" rel="noopener">Ch'astack en GitHub</a></li>
-            <li><a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener">Documentación de Flask</a></li>
-            <li><a href="https://jinja.palletsprojects.com/" target="_blank" rel="noopener">Jinja2 Templates</a></li>
-            <li><a href="https://htmx.org/" target="_blank" rel="noopener">HTMX</a></li>
-        </ul>
-    </section>
+        <article class="plano">
+            <h2 class="plano__titulo">Medicamentos</h2>
+            <p class="plano__descripcion">
+                Consultá y administrá medicamentos: principio activo, dosis y enfermedad asociada.
+            </p>
+            <a class="plano__enlace"
+               href="{{ url_for('geneticapp_servidor_planos_medicamentos.inicio') }}"
+               hx-get="{{ url_for('geneticapp_servidor_planos_medicamentos.inicio') }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true">Ver medicamentos →</a>
+        </article>
+    </div>
 </div>
 {% endblock %}
 

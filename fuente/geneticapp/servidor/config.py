@@ -18,11 +18,19 @@ if not AMBIENTE_GENETICAPP or AMBIENTE_GENETICAPP == 'DESARROLLO':
     URL_BASE='http://127.0.0.1:6969'
     CSS = 'css'
     CONFIG_BDD : chbdd.ConfigMySQL = chbdd.ConfigMySQL(
-        "localhost", 
-        "servidor_local_geneticapp", 
-        "S3rv1d0r@.geneticapp!", 
+        "localhost",
+        "servidor_local_geneticapp",
+        "S3rv1d0r@.geneticapp!",
         "geneticapp_desarrollo",
     )
+    type(CONFIG_BDD).PARAMETROS_CONEXION = property(lambda self: {
+        "host": "localhost",
+        "user": "servidor_local_geneticapp",
+        "password": "S3rv1d0r@.geneticapp!",
+        "database": "geneticapp_desarrollo",
+        "port": 3307,
+        "use_pure": False,
+    })
     EXPLAIN_TEMPLATE_LOADING = True
 elif AMBIENTE_GENETICAPP in ('PROTOTIPO','DEMO','ESCENIFICACION'):
     URL_BASE=''

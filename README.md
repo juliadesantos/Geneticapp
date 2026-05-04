@@ -1,122 +1,123 @@
-# geneticapp
+# 🧬 GeneticApp
 
-Proyecto creado con Ch'astack.
+App web de consulta sobre **enfermedades genéticas y sus medicamentos**, construida con Flask + MySQL usando el framework **Ch'askapp**.
+
+---
+
+## ¿Para qué sirve?
+
+Permite registrar y consultar enfermedades genéticas (gen afectado, tipo de herencia, síntomas) y los medicamentos asociados a cada una. Incluye CRUD completo para ambas entidades.
+
+---
 
 ## Stack
 
-Este proyecto utiliza el stack **PYFAMUX** (Python + Flask + MySQL + Ch'astack):
+- **Python 3.13** — Lenguaje principal
+- **Flask** — Framework web
+- **MySQL** — Base de datos
+- **Ch'askapp** — Herramientas de desarrollo (stack PYFAMUX)
+- **HTMX** — Navegación sin recarga de página
 
-- **Python 3.13** - Lenguaje principal
-- **Flask** - Framework web
-- **MySQL** - Base de datos
-- **Ch'astack** - Herramientas de desarrollo
+---
 
-## Requisitos
+## Requisitos previos
 
-- [Ch'astack](https://github.com/hernanatn/chastack) instalado
-- MySQL Server (Ch'astack lo instala automáticamente)
-- Python 3.13+ (gestionado por Ch'astack)
+- [Ch'askapp](https://github.com/hernanatn/chastack) instalado
+- MySQL Server activo
+- Python 3.13+
+
+---
 
 ## Instalación
 
-1. Clone el repositorio:
-```bash
-git clone <url-del-repositorio>
-cd geneticapp
-```
-
-2. Inicialice el entorno con Ch'astack:
-```bash
-chastack inicializar
-```
-
-3. La base de datos se crea automáticamente. Si necesita resetearla:
-```bash
-chastack resetear-bdd
-```
-
-## Desarrollo
-
-### Ejecutar servidor de desarrollo
+### 1 — Clonar el repositorio
 
 ```bash
-chastack correr
+git clone https://github.com/juliadesantos/Geneticapp.git
+cd Geneticapp
 ```
 
-El servidor estará disponible en:
-- Local: http://localhost:6969
-- LAN: http://0.0.0.0:6969
+### 2 — Crear la base de datos
 
-### Ejecutar pruebas
+Abrí MySQL (Workbench o Command Line) y ejecutá estos archivos **en orden**:
+
+```sql
+source fuente/geneticapp/bdd/bdd.sql
+source fuente/geneticapp/bdd/globales.sql
+source fuente/geneticapp/bdd/enfermedades.sql
+source fuente/geneticapp/bdd/medicamentos.sql
+```
+
+> ⚠️ **Puerto MySQL distinto al 3306**
+>
+> Si tu MySQL no corre en el puerto estándar 3306, editá `fuente/geneticapp/servidor/config.py`
+> y cambiá el número de puerto en el parche `PARAMETROS_CONEXION`:
+>
+> ```python
+> type(CONFIG_BDD).PARAMETROS_CONEXION = property(lambda self: {
+>     ...
+>     "port": 3306,  # ← cambiá este número por tu puerto
+>     ...
+> })
+> ```
+
+### 3 — Correr la app
 
 ```bash
-chastack probar
+chaskapp correr
 ```
 
-### Minificar estáticos
+La app estará disponible en: **http://127.0.0.1:6969**
 
-```bash
-chastack minificar
-```
+---
+
+## Uso
+
+| URL | Descripción |
+|-----|-------------|
+| `/` | Página principal |
+| `/enfermedades/` | Listado de enfermedades |
+| `/enfermedades/nueva` | Crear nueva enfermedad |
+| `/enfermedades/<id>` | Ver detalle |
+| `/enfermedades/<id>/editar` | Editar |
+| `/medicamentos/` | Listado de medicamentos |
+| `/medicamentos/nuevo` | Crear nuevo medicamento |
+| `/medicamentos/<id>` | Ver detalle |
+| `/medicamentos/<id>/editar` | Editar |
+
+---
 
 ## Estructura del proyecto
 
 ```
 geneticapp/
-├── .secretos/              # Secretos del proyecto (ignorado por git)
-│   ├── pimienta            # Token de seguridad
-│   └── llave               # Llave secreta
-├── docs/                   # Documentación
 ├── fuente/
 │   └── geneticapp/
-│       ├── bdd/            # Scripts y modelos de base de datos
-│       ├── cerebro/        # Lógica de negocio
-│       ├── pruebas/        # Pruebas unitarias e integración
-│       ├── servidor/       # Aplicación Flask
-│       │   ├── estatico/   # Archivos estáticos (CSS, JS)
-│       │   ├── plantillas/ # Plantillas Jinja2
-│       │   └── planos/     # Blueprints de Flask
-│       └── utiles/         # Utilidades compartidas
+│       ├── bdd/                  # Modelos y esquemas SQL
+│       │   ├── enfermedades.py   # Modelo Enfermedad
+│       │   ├── enfermedades.sql  # Tabla Enfermedad
+│       │   ├── medicamentos.py   # Modelo Medicamento
+│       │   ├── medicamentos.sql  # Tabla Medicamento
+│       │   └── .sintetico/       # Datos de prueba
+│       ├── servidor/
+│       │   ├── config.py         # Configuración y conexión BDD
+│       │   ├── plantillas/       # Templates HTML (Jinja2)
+│       │   └── planos/
+│       │       ├── enfermedades/ # Blueprint enfermedades (CRUD)
+│       │       └── medicamentos/ # Blueprint medicamentos (CRUD)
+│       └── pruebas/              # Tests
 └── README.md
 ```
 
-## Planos (Blueprints)
+---
 
+## Otros comandos
 
-Este proyecto incluye los siguientes planos:
-
-- **Enfermedades**: `/enfermedades/`
-- **Medicamentos**: `/medicamentos/`
-- **geneticapp**: `/geneticapp/`
-
-
-
-## Configuración de entornos
-
-### Desarrollo
-- Base de datos: `geneticapp_desarrollo`
-- Puerto: 6969
-- Debug: Activado
-
-
-
-
-
-## Variables de entorno
-
-El proyecto utiliza las siguientes variables de entorno:
-
-| Variable | Descripción |
-|----------|-------------|
-| `AMBIENTE_GENETICAPP` | Ambiente actual (DESARROLLO, ESCENIFICACION, PRODUCCION) |
-| `PIMIENTA` | Token de seguridad para hashing |
-| `LLAVE_SECRETA` | Llave secreta para sesiones Flask |
-
-
-## Licencia
-
-[Especificar licencia]
+```bash
+chaskapp probar      # Ejecutar pruebas
+chaskapp minificar   # Minificar CSS y JS
+```
 
 ---
 
-*Proyecto creado con [Ch'astack](https://github.com/hernanatn/chastack)*
+*Proyecto creado con [Ch'askapp](https://github.com/hernanatn/chastack)*

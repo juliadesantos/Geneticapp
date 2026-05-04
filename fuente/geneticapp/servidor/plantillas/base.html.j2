@@ -90,11 +90,8 @@
     <header id="cabecera-principal">
         {% block cabecera %}
         <div class="cabecera__contenedor">
-            <a class="cabecera__logo" href="{{ url_for('.inicio') }}">
-                <img class="cabecera__logo-img"
-                     src="{{ url_for('static', filename='publico/img/logo.webp') }}"
-                     alt="GENETICAPP"
-                     height="32">
+            <a class="cabecera__logo" href="{{ url_for('.inicio') }}" style="text-decoration:none; display:flex; align-items:center; gap:.4rem; font-weight:700; font-size:1.1rem; letter-spacing:.03em;">
+                🧬 GeneticApp
             </a>
 
             <nav class="cabecera__nav" id="nav-principal">
@@ -108,6 +105,24 @@
                    hx-push-url="true">
                     Inicio
                 </a>
+                <a href="{{ url_for('geneticapp_servidor_planos_enfermedades.inicio') }}"
+                   class="cabecera__nav-link"
+                   hx-get="{{ url_for('geneticapp_servidor_planos_enfermedades.inicio') }}"
+                   hx-target="#contenido_principal"
+                   hx-select="#contenido_principal > *"
+                   hx-swap="innerHTML transition:true"
+                   hx-push-url="true">
+                    Enfermedades
+                </a>
+                <a href="{{ url_for('geneticapp_servidor_planos_medicamentos.inicio') }}"
+                   class="cabecera__nav-link"
+                   hx-get="{{ url_for('geneticapp_servidor_planos_medicamentos.inicio') }}"
+                   hx-target="#contenido_principal"
+                   hx-select="#contenido_principal > *"
+                   hx-swap="innerHTML transition:true"
+                   hx-push-url="true">
+                    Medicamentos
+                </a>
                 {% if CONFIG.AMBIENTE_GENETICAPP == 'DESARROLLO' %}
                 <a href="{{ url_for('desarrollo.inicio') }}"
                    class="cabecera__nav-link"
@@ -116,7 +131,7 @@
                    hx-select="#contenido_principal > *"
                    hx-swap="innerHTML transition:true"
                    hx-push-url="true">
-                    Inicio
+                    Desarrollo
                 </a>
                 {% endif %}
                 {% endblock nav_links %}
@@ -152,11 +167,8 @@
         {% block pie %}
         <div class="pie__contenedor">
             <div class="pie__marca">
-                <a class="pie__logo" href="{{ url_for('.inicio') }}">
-                    <img class="pie__logo-img"
-                         src="{{ url_for('static', filename='publico/img/logo.webp') }}"
-                         alt="GENETICAPP"
-                         height="48">
+                <a class="pie__logo" href="{{ url_for('.inicio') }}" style="text-decoration:none; font-weight:700; font-size:1.3rem;">
+                    🧬 GeneticApp
                 </a>
             </div>
 
