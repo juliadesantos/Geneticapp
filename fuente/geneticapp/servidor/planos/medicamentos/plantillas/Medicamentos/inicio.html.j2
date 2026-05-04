@@ -1,54 +1,86 @@
 {% extends "medicamentos/base.html.j2" %}
 
-{% block titulo %}Inicio - MEDICAMENTOS{% endblock %}
+{% block titulo %}Medicamentos - GENETICAPP{% endblock %}
 
 {% block contenido_plano %}
-{#
-   PAGINA DE EJEMPLO DEL PLANO: MEDICAMENTOS
 
-   Este contenido es un placeholder de referencia.
-   Muestra la estructura del plano y las rutas disponibles.
-   REEMPLACE TODO ESTE CONTENIDO con su implementacion real.
-
-   Las clases usadas (.caja, .codigo, .etiqueta, etc.) estan
-   definidas en estatico/css/plano.css y son editables/descartables.
-#}
-
-<header class="margen-abajo-6">
-    <p class="texto-chico texto-gris">
-        <a href="{{ url_for('inicio') }}">GENETICAPP</a> / MEDICAMENTOS</p>
-    <h1 class="texto-titulo">MEDICAMENTOS <span class="texto-chico texto-gris">(plano)</span></h1>
+<header class="fila fila--entre margen-abajo-6">
+    <div>
+        <p class="texto-chico texto-gris">
+            <a href="{{ url_for('inicio') }}"
+               hx-get="{{ url_for('inicio') }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true">GENETICAPP</a> / MEDICAMENTOS</p>
+        <h1 class="texto-titulo">Medicamentos</h1>
+    </div>
+    <a class="boton"
+       href="{{ url_for('.nuevo') }}"
+       hx-get="{{ url_for('.nuevo') }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true">+ Nuevo medicamento</a>
 </header>
 
-<section class="caja margen-abajo-4">
-    <h2 class="texto-grande margen-abajo-4">Estructura del plano</h2>
-    <div class="codigo">
-<span class="carpeta">planos/</span>
-  <span class="carpeta">medicamentos/</span>
-    <span class="carpeta">estatico/</span> <span class="comentario"># Archivos estaticos</span>
-      <span class="carpeta">css/</span>
-        <span class="archivo">plano.css</span> <span class="comentario"># Estilos locales (editable)</span>
-      <span class="carpeta">js/</span>
-    <span class="carpeta">plantillas/</span>
-      <span class="carpeta">medicamentos/</span>
-        <span class="archivo">base.html.j2</span>
-        <span class="archivo">inicio.html.j2</span> <span class="comentario"># Esta pagina</span>
-    <span class="carpeta">vistas/</span>
-      <span class="archivo">__init__.py</span> <span class="comentario"># Rutas del plano</span>
-    <span class="archivo">__init__.py</span> <span class="comentario"># Registro del blueprint</span>
-    </div>
+{% if medicamentos %}
+<section class="grilla-auto">
+    {% for medicamento in medicamentos %}
+    <article class="caja columna">
+        <div>
+            <h2 class="texto-grande">{{ medicamento.nombre }}</h2>
+            {% if medicamento.principio_activo %}
+            <p class="texto-chico texto-gris margen-arriba-2">
+                Principio activo: <span class="etiqueta">{{ medicamento.principio_activo }}</span>
+            </p>
+            {% endif %}
+            {% if medicamento.dosis %}
+            <p class="texto-chico texto-gris margen-arriba-2">Dosis: {{ medicamento.dosis }}</p>
+            {% endif %}
+        </div>
+        <div class="fila margen-arriba-4">
+            <a href="{{ url_for('.detalle', id=medicamento.id) }}"
+               hx-get="{{ url_for('.detalle', id=medicamento.id) }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true"
+               class="boton boton--secundario">Ver detalle</a>
+            <a href="{{ url_for('.editar', id=medicamento.id) }}"
+               hx-get="{{ url_for('.editar', id=medicamento.id) }}"
+               hx-target="#contenido_principal"
+               hx-select="#contenido_principal > *"
+               hx-swap="innerHTML transition:true"
+               hx-push-url="true"
+               class="boton boton--secundario">Editar</a>
+            <form method="POST"
+                  action="{{ url_for('.eliminar', id=medicamento.id) }}"
+                  style="display:inline">
+                <button type="submit"
+                        class="boton boton--peligro"
+                        hx-confirm="¿Eliminar {{ medicamento.nombre }}? Esta acción no se puede deshacer."
+                        hx-post="{{ url_for('.eliminar', id=medicamento.id) }}"
+                        hx-target="#contenido_principal"
+                        hx-select="#contenido_principal > *"
+                        hx-swap="innerHTML transition:true"
+                        hx-push-url="{{ url_for('.inicio') }}">Eliminar</button>
+            </form>
+        </div>
+    </article>
+    {% endfor %}
 </section>
+{% else %}
+<section class="caja fila--centro columna espacio-8">
+    <p class="texto-grande texto-gris">No hay medicamentos cargados aún.</p>
+    <a class="boton"
+       href="{{ url_for('.nuevo') }}"
+       hx-get="{{ url_for('.nuevo') }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true">Cargar el primero</a>
+</section>
+{% endif %}
 
-<section class="caja">
-    <h2 class="texto-grande margen-abajo-4">Rutas disponibles</h2>
-    <ul class="columna">
-        <li>
-            <span class="etiqueta">/medicamentos/</span>
-            <span class="texto-suave">Pagina de inicio del plano</span>
-        </li>
-    </ul>
-    <p class="texto-chico texto-gris margen-arriba-4">
-        Agregue mas rutas en <code class="etiqueta">vistas/__init__.py</code>
-    </p>
-</section>
 {% endblock %}

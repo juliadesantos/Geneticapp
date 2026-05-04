@@ -1,0 +1,91 @@
+{% extends "medicamentos/base.html.j2" %}
+
+{% block titulo %}{{ medicamento.nombre }} - GENETICAPP{% endblock %}
+
+{% block contenido_plano %}
+
+<header class="margen-abajo-6">
+    <p class="texto-chico texto-gris">
+        <a href="{{ url_for('inicio') }}"
+           hx-get="{{ url_for('inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">GENETICAPP</a>
+        /
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">MEDICAMENTOS</a>
+        / {{ medicamento.nombre | upper }}
+    </p>
+    <h1 class="texto-titulo">{{ medicamento.nombre }}</h1>
+</header>
+
+<section class="caja margen-abajo-4">
+    <dl class="columna">
+        <div class="fila borde-abajo espacio-2">
+            <dt class="texto-suave" style="min-width:12rem">Principio activo</dt>
+            <dd>{% if medicamento.principio_activo %}<span class="etiqueta">{{ medicamento.principio_activo }}</span>{% else %}<span class="texto-gris">—</span>{% endif %}</dd>
+        </div>
+        <div class="fila borde-abajo espacio-2">
+            <dt class="texto-suave" style="min-width:12rem">Dosis</dt>
+            <dd>{{ medicamento.dosis or '—' }}</dd>
+        </div>
+        <div class="fila espacio-2">
+            <dt class="texto-suave" style="min-width:12rem">Enfermedad</dt>
+            <dd>
+                {% if enfermedad %}
+                <a href="{{ url_for('geneticapp_servidor_planos_enfermedades.detalle', id=enfermedad.id) }}"
+                   hx-get="{{ url_for('geneticapp_servidor_planos_enfermedades.detalle', id=enfermedad.id) }}"
+                   hx-target="#contenido_principal"
+                   hx-select="#contenido_principal > *"
+                   hx-swap="innerHTML transition:true"
+                   hx-push-url="true">{{ enfermedad.nombre }}</a>
+                {% else %}
+                <span class="texto-gris">—</span>
+                {% endif %}
+            </dd>
+        </div>
+    </dl>
+</section>
+
+<section class="margen-abajo-4">
+    <p class="texto-chico texto-gris">
+        Cargado: {{ medicamento.fecha_carga }} &nbsp;·&nbsp;
+        Última modificación: {{ medicamento.fecha_modificacion }}
+    </p>
+</section>
+
+<div class="fila">
+    <a href="{{ url_for('.inicio') }}"
+       hx-get="{{ url_for('.inicio') }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true"
+       class="boton boton--secundario">← Volver</a>
+    <a href="{{ url_for('.editar', id=medicamento.id) }}"
+       hx-get="{{ url_for('.editar', id=medicamento.id) }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true"
+       class="boton">Editar</a>
+    <form method="POST"
+          action="{{ url_for('.eliminar', id=medicamento.id) }}"
+          style="display:inline">
+        <button type="submit"
+                class="boton boton--peligro"
+                hx-confirm="¿Eliminar {{ medicamento.nombre }}? Esta acción no se puede deshacer."
+                hx-post="{{ url_for('.eliminar', id=medicamento.id) }}"
+                hx-target="#contenido_principal"
+                hx-select="#contenido_principal > *"
+                hx-swap="innerHTML transition:true"
+                hx-push-url="{{ url_for('.inicio') }}">Eliminar</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends "medicamentos/base.html.j2" %}
+
+{% block titulo %}Nuevo Medicamento - GENETICAPP{% endblock %}
+
+{% block contenido_plano %}
+
+<header class="margen-abajo-6">
+    <p class="texto-chico texto-gris">
+        <a href="{{ url_for('inicio') }}"
+           hx-get="{{ url_for('inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">GENETICAPP</a>
+        /
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">MEDICAMENTOS</a>
+        / NUEVO
+    </p>
+    <h1 class="texto-titulo">Nuevo Medicamento</h1>
+</header>
+
+<form method="POST" action="{{ url_for('.nuevo') }}" class="caja columna">
+    <div class="columna">
+        <label for="nombre" class="texto-suave">Nombre <span class="texto-principal">*</span></label>
+        <input type="text"
+               id="nombre"
+               name="nombre"
+               class="campo"
+               required
+               placeholder="Nombre del medicamento">
+    </div>
+
+    <div class="columna">
+        <label for="principio_activo" class="texto-suave">Principio activo</label>
+        <input type="text"
+               id="principio_activo"
+               name="principio_activo"
+               class="campo"
+               placeholder="Ej: Ivacaftor, Tetrabenazina">
+    </div>
+
+    <div class="columna">
+        <label for="dosis" class="texto-suave">Dosis</label>
+        <input type="text"
+               id="dosis"
+               name="dosis"
+               class="campo"
+               placeholder="Ej: 150 mg cada 12 horas">
+    </div>
+
+    <div class="columna">
+        <label for="enfermedad_id" class="texto-suave">Enfermedad <span class="texto-principal">*</span></label>
+        <select id="enfermedad_id" name="enfermedad_id" class="campo" required>
+            <option value="">— Seleccionar enfermedad —</option>
+            {% for enfermedad in enfermedades %}
+            <option value="{{ enfermedad.id }}">{{ enfermedad.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="fila margen-arriba-4">
+        <button type="submit" class="boton">Guardar medicamento</button>
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true"
+           class="boton boton--secundario">Cancelar</a>
+    </div>
+</form>
+
+{% endblock %}

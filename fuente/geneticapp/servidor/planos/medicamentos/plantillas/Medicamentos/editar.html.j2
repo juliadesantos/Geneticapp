@@ -1,0 +1,88 @@
+{% extends "medicamentos/base.html.j2" %}
+
+{% block titulo %}Editar {{ medicamento.nombre }} - GENETICAPP{% endblock %}
+
+{% block contenido_plano %}
+
+<header class="margen-abajo-6">
+    <p class="texto-chico texto-gris">
+        <a href="{{ url_for('inicio') }}"
+           hx-get="{{ url_for('inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">GENETICAPP</a>
+        /
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">MEDICAMENTOS</a>
+        /
+        <a href="{{ url_for('.detalle', id=medicamento.id) }}"
+           hx-get="{{ url_for('.detalle', id=medicamento.id) }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">{{ medicamento.nombre | upper }}</a>
+        / EDITAR
+    </p>
+    <h1 class="texto-titulo">Editar: {{ medicamento.nombre }}</h1>
+</header>
+
+<form method="POST" action="{{ url_for('.editar', id=medicamento.id) }}" class="caja columna">
+    <div class="columna">
+        <label for="nombre" class="texto-suave">Nombre <span class="texto-principal">*</span></label>
+        <input type="text"
+               id="nombre"
+               name="nombre"
+               class="campo"
+               required
+               value="{{ medicamento.nombre }}">
+    </div>
+
+    <div class="columna">
+        <label for="principio_activo" class="texto-suave">Principio activo</label>
+        <input type="text"
+               id="principio_activo"
+               name="principio_activo"
+               class="campo"
+               value="{{ medicamento.principio_activo or '' }}">
+    </div>
+
+    <div class="columna">
+        <label for="dosis" class="texto-suave">Dosis</label>
+        <input type="text"
+               id="dosis"
+               name="dosis"
+               class="campo"
+               value="{{ medicamento.dosis or '' }}">
+    </div>
+
+    <div class="columna">
+        <label for="enfermedad_id" class="texto-suave">Enfermedad <span class="texto-principal">*</span></label>
+        <select id="enfermedad_id" name="enfermedad_id" class="campo" required>
+            <option value="">— Seleccionar enfermedad —</option>
+            {% for enfermedad in enfermedades %}
+            <option value="{{ enfermedad.id }}"
+                    {% if medicamento.enfermedad_id == enfermedad.id %}selected{% endif %}>
+                {{ enfermedad.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="fila margen-arriba-4">
+        <button type="submit" class="boton">Guardar cambios</button>
+        <a href="{{ url_for('.detalle', id=medicamento.id) }}"
+           hx-get="{{ url_for('.detalle', id=medicamento.id) }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true"
+           class="boton boton--secundario">Cancelar</a>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends "enfermedades/base.html.j2" %}
+
+{% block titulo %}{{ enfermedad.nombre }} - GENETICAPP{% endblock %}
+
+{% block contenido_plano %}
+
+<header class="margen-abajo-6">
+    <p class="texto-chico texto-gris">
+        <a href="{{ url_for('inicio') }}"
+           hx-get="{{ url_for('inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">GENETICAPP</a>
+        /
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">ENFERMEDADES</a>
+        / {{ enfermedad.nombre | upper }}
+    </p>
+    <h1 class="texto-titulo">{{ enfermedad.nombre }}</h1>
+</header>
+
+<section class="caja margen-abajo-4">
+    <dl class="columna">
+        <div class="fila borde-abajo espacio-2">
+            <dt class="texto-suave" style="min-width:12rem">Gen afectado</dt>
+            <dd>{% if enfermedad.gen_afectado %}<span class="etiqueta">{{ enfermedad.gen_afectado }}</span>{% else %}<span class="texto-gris">—</span>{% endif %}</dd>
+        </div>
+        <div class="fila borde-abajo espacio-2">
+            <dt class="texto-suave" style="min-width:12rem">Tipo de herencia</dt>
+            <dd>{{ enfermedad.tipo_herencia or '—' }}</dd>
+        </div>
+        <div class="fila espacio-2">
+            <dt class="texto-suave" style="min-width:12rem">Síntomas</dt>
+            <dd>{{ enfermedad.sintomas or '—' }}</dd>
+        </div>
+    </dl>
+</section>
+
+<section class="margen-abajo-4">
+    <p class="texto-chico texto-gris">
+        Cargada: {{ enfermedad.fecha_carga }} &nbsp;·&nbsp;
+        Última modificación: {{ enfermedad.fecha_modificacion }}
+    </p>
+</section>
+
+<div class="fila">
+    <a href="{{ url_for('.inicio') }}"
+       hx-get="{{ url_for('.inicio') }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true"
+       class="boton boton--secundario">← Volver</a>
+    <a href="{{ url_for('.editar', id=enfermedad.id) }}"
+       hx-get="{{ url_for('.editar', id=enfermedad.id) }}"
+       hx-target="#contenido_principal"
+       hx-select="#contenido_principal > *"
+       hx-swap="innerHTML transition:true"
+       hx-push-url="true"
+       class="boton">Editar</a>
+    <form method="POST"
+          action="{{ url_for('.eliminar', id=enfermedad.id) }}"
+          style="display:inline">
+        <button type="submit"
+                class="boton boton--peligro"
+                hx-confirm="¿Eliminar {{ enfermedad.nombre }}? Esta acción no se puede deshacer."
+                hx-post="{{ url_for('.eliminar', id=enfermedad.id) }}"
+                hx-target="#contenido_principal"
+                hx-select="#contenido_principal > *"
+                hx-swap="innerHTML transition:true"
+                hx-push-url="{{ url_for('.inicio') }}">Eliminar</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "enfermedades/base.html.j2" %}
+
+{% block titulo %}Nueva Enfermedad - GENETICAPP{% endblock %}
+
+{% block contenido_plano %}
+
+<header class="margen-abajo-6">
+    <p class="texto-chico texto-gris">
+        <a href="{{ url_for('inicio') }}"
+           hx-get="{{ url_for('inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">GENETICAPP</a>
+        /
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true">ENFERMEDADES</a>
+        / NUEVA
+    </p>
+    <h1 class="texto-titulo">Nueva Enfermedad</h1>
+</header>
+
+<form method="POST" action="{{ url_for('.nueva') }}" class="caja columna">
+    <div class="columna">
+        <label for="nombre" class="texto-suave">Nombre <span class="texto-principal">*</span></label>
+        <input type="text"
+               id="nombre"
+               name="nombre"
+               class="campo"
+               required
+               placeholder="Nombre de la enfermedad">
+    </div>
+
+    <div class="columna">
+        <label for="gen_afectado" class="texto-suave">Gen afectado</label>
+        <input type="text"
+               id="gen_afectado"
+               name="gen_afectado"
+               class="campo"
+               placeholder="Ej: CFTR, HTT, PAH">
+    </div>
+
+    <div class="columna">
+        <label for="tipo_herencia" class="texto-suave">Tipo de herencia</label>
+        <select id="tipo_herencia" name="tipo_herencia" class="campo">
+            <option value="">— Seleccionar —</option>
+            <option value="Autosómica dominante">Autosómica dominante</option>
+            <option value="Autosómica recesiva">Autosómica recesiva</option>
+            <option value="Ligada al X dominante">Ligada al X dominante</option>
+            <option value="Ligada al X recesiva">Ligada al X recesiva</option>
+            <option value="Mitocondrial">Mitocondrial</option>
+            <option value="Multifactorial">Multifactorial</option>
+        </select>
+    </div>
+
+    <div class="columna">
+        <label for="sintomas" class="texto-suave">Síntomas</label>
+        <textarea id="sintomas"
+                  name="sintomas"
+                  class="campo"
+                  rows="4"
+                  placeholder="Descripción de síntomas principales"></textarea>
+    </div>
+
+    <div class="fila margen-arriba-4">
+        <button type="submit" class="boton">Guardar enfermedad</button>
+        <a href="{{ url_for('.inicio') }}"
+           hx-get="{{ url_for('.inicio') }}"
+           hx-target="#contenido_principal"
+           hx-select="#contenido_principal > *"
+           hx-swap="innerHTML transition:true"
+           hx-push-url="true"
+           class="boton boton--secundario">Cancelar</a>
+    </div>
+</form>
+
+{% endblock %}

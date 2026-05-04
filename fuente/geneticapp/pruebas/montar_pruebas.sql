@@ -42,14 +42,50 @@ CREATE TABLE IF NOT EXISTS `Globales` (
     , domicilio JSON
 );
 
--- NOTA: Agregar aquí otras tablas del proyecto
--- Las tablas adicionales serán leídas desde bdd/*.sql
+-- Tabla Enfermedad
+CREATE TABLE IF NOT EXISTS `Enfermedad` (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+    , fecha_carga TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    , fecha_modificacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    --
+    , nombre VARCHAR(255) NOT NULL
+    , gen_afectado VARCHAR(100)
+    , tipo_herencia VARCHAR(100)
+    , sintomas TEXT
+);
+
+-- Tabla Medicamento
+CREATE TABLE IF NOT EXISTS `Medicamento` (
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+    , fecha_carga TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    , fecha_modificacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    --
+    , nombre VARCHAR(255) NOT NULL
+    , principio_activo VARCHAR(255)
+    , dosis VARCHAR(100)
+    , enfermedad_id INT NOT NULL
+    , FOREIGN KEY (enfermedad_id) REFERENCES Enfermedad(id) ON DELETE CASCADE
+);
 
 -- ============================================
 -- DATOS SINTÉTICOS DE PRUEBA
 -- ============================================
 -- NOTA: Los archivos de bdd/.sintetico/*.sql se ejecutarán aquí
 -- para poblar con datos de prueba
+
+INSERT INTO `Enfermedad` (nombre, gen_afectado, tipo_herencia, sintomas)
+VALUES
+    ('Fibrosis Quística', 'CFTR', 'Autosómica recesiva', 'Problemas pulmonares crónicos, insuficiencia pancreática')
+    , ('Huntington', 'HTT', 'Autosómica dominante', 'Movimientos involuntarios, deterioro cognitivo progresivo')
+    , ('Fenilcetonuria', 'PAH', 'Autosómica recesiva', 'Discapacidad intelectual, retraso en el desarrollo')
+;
+
+INSERT INTO `Medicamento` (nombre, principio_activo, dosis, enfermedad_id)
+VALUES
+    ('Kalydeco', 'Ivacaftor', '150 mg cada 12 horas', 1)
+    , ('Tetrabenazina', 'Tetrabenazina', '12.5 mg 3 veces al día', 2)
+    , ('Kuvan', 'Sapropterina', '10 mg/kg/día', 3)
+;
 
 INSERT INTO `Globales`
 SET
