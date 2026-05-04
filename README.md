@@ -103,21 +103,10 @@ geneticapp/
 │       │   ├── config.py         # Configuración y conexión BDD
 │       │   ├── plantillas/       # Templates HTML (Jinja2)
 │       │   └── planos/
-│       │       ├── enfermedades/ # Blueprint enfermedades (CRUD)
-│       │       └── medicamentos/ # Blueprint medicamentos (CRUD)
-│       └── pruebas/              # Tests
+│       │       ├── enfermedades/ 
+│       │       └── medicamentos/ 
+│       └── pruebas/              
 └── README.md
 ```
-
----
-
-## Otros comandos
-
-```bash
-chaskapp probar      # Ejecutar pruebas
-chaskapp minificar   # Minificar CSS y JS
-```
-
----
 
 *Proyecto creado con [Ch'askapp](https://github.com/hernanatn/chastack)*
